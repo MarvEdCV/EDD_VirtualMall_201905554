@@ -80,18 +80,22 @@ func (m *Lista) Buscar(nombre string) *nodo {
 }
 
 //Eliminar nodo de la lista
-func (m *Lista) Eliminar(tienda Tienda) {
-	aux := m.Buscar(tienda.Nombre)
-
+func (m *Lista) Eliminar(nombre string) {
+	aux := m.Buscar(nombre)
+	fmt.Print(aux)
+	fmt.Print("aqui ando")
 	if m.inicio == aux {
+		fmt.Print("soy el inicio")
 		m.inicio = aux.siguiente
 		aux.siguiente.anterior = nil
 		aux.siguiente = nil
 	} else if m.ultimo == aux {
+		fmt.Print("soy el final")
 		m.ultimo = aux.anterior
 		aux.anterior.siguiente = nil
 		aux.anterior = nil
 	} else {
+		fmt.Print("elseee")
 		aux.anterior.siguiente = aux.siguiente
 		aux.siguiente.anterior = aux.anterior
 		aux.anterior = nil

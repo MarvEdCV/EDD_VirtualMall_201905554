@@ -53,7 +53,7 @@ func metodopost(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(body, &matrix)
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(matrix)
-	fmt.Println(matrix)
+	//fmt.Println(matrix)
 	row = len(matrix.Datos)
 	column = len(matrix.Datos[0].Departamentos)
 	//Numero de posiciones del vector linealizado
@@ -104,6 +104,7 @@ func metodopost(w http.ResponseWriter, r *http.Request) {
 			VectorLinealizado[z].Lista.Imprimir()
 			fmt.Println()
 		}*/
+	fmt.Println(VectorLinealizado)
 	Vector = VectorLinealizado
 }
 func metodopost1(w http.ResponseWriter, r *http.Request) {
@@ -120,14 +121,6 @@ func metodopost1(w http.ResponseWriter, r *http.Request) {
 			Vector[i].Lista.Buscar(string(send.Nombre))
 		}
 	}
-
-}
-func getposicion(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	temp := vars["id"]
-	tempcast, _ := strconv.ParseInt(temp, 10, 64)
-	fmt.Println("\nLA POSICION EN EL VECTOR DE LA LISTA ES: ", tempcast)
-	Vector[tempcast].Lista.Imprimir()
 }
 
 func Eliminar(w http.ResponseWriter, r *http.Request) {
@@ -135,7 +128,23 @@ func Eliminar(w http.ResponseWriter, r *http.Request) {
 	name := data["nombre"]
 	categoria := data["categoria"]
 	calificacion := data["calificacion"]
+	castcat, _ := strconv.ParseInt(calificacion, 10, 64)
 
+	for i := 0; i < len(Vector); i++ {
+		if Vector[i].Departamento == categoria && Vector[i].Calificacion == int(castcat) {
+			Vector[i].Lista.Eliminar(name)
+			fmt.Println("La tienda :", name, " fue eliminada con exito")
+		}
+	}
+
+}
+
+func getposicion(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	temp := vars["id"]
+	tempcast, _ := strconv.ParseInt(temp, 10, 64)
+	fmt.Println("\nLA POSICION EN EL VECTOR DE LA LISTA ES: ", tempcast)
+	Vector[tempcast].Lista.Imprimir()
 }
 
 var id int
@@ -147,7 +156,7 @@ func request() {
 	myrouter.HandleFunc("/cargartienda", metodopost).Methods("POST")
 	myrouter.HandleFunc("/TiendaEspecifica", metodopost1).Methods("POST")
 	myrouter.HandleFunc("/{id}", getposicion).Methods("GET")
-	myrouter.HandleFunc("/Eliminar/{nombre}/{categoria}/{calificacion}", Eliminar).Methods("GET")
+	myrouter.HandleFunc("/Eliminar/{categoria}/{nombre}/{calificacion}", Eliminar).Methods("GET")
 	log.Fatal(http.ListenAndServe(":3000", myrouter))
 }
 
