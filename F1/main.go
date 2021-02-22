@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strconv"
 
 	"./List"
 	"github.com/gorilla/mux"
@@ -96,13 +97,13 @@ func metodopost(w http.ResponseWriter, r *http.Request) {
 			VectorLinealizado[countaux] = *Magnifica
 			countaux++
 		}
-	}
-	for z := 0; z < posiciones; z++ {
-		fmt.Println("posicion:", z)
-		fmt.Println(VectorLinealizado[z].Indice, VectorLinealizado[z].Departamento, VectorLinealizado[z].Calificacion)
-		VectorLinealizado[z].Lista.Imprimir()
-		fmt.Println()
-	}
+	} /*
+		for z := 0; z < posiciones; z++ {
+			fmt.Println("posicion:", z)
+			fmt.Println(VectorLinealizado[z].Indice, VectorLinealizado[z].Departamento, VectorLinealizado[z].Calificacion)
+			VectorLinealizado[z].Lista.Imprimir()
+			fmt.Println()
+		}*/
 	Vector = VectorLinealizado
 }
 func metodopost1(w http.ResponseWriter, r *http.Request) {
@@ -121,6 +122,23 @@ func metodopost1(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
+func getposicion(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	temp := vars["id"]
+	tempcast, _ := strconv.ParseInt(temp, 10, 64)
+	fmt.Println("\nLA POSICION EN EL VECTOR DE LA LISTA ES: ", tempcast)
+	Vector[tempcast].Lista.Imprimir()
+}
+
+func Eliminar(w http.ResponseWriter, r *http.Request) {
+	data := mux.Vars(r)
+	name := data["nombre"]
+	categoria := data["categoria"]
+	calificacion := data["calificacion"]
+
+}
+
+var id int
 
 func request() {
 	myrouter := mux.NewRouter().StrictSlash(true)
@@ -128,6 +146,8 @@ func request() {
 	myrouter.HandleFunc("/getArreglo", getArreglo).Methods("GET")
 	myrouter.HandleFunc("/cargartienda", metodopost).Methods("POST")
 	myrouter.HandleFunc("/TiendaEspecifica", metodopost1).Methods("POST")
+	myrouter.HandleFunc("/{id}", getposicion).Methods("GET")
+	myrouter.HandleFunc("/Eliminar/{nombre}/{categoria}/{calificacion}", Eliminar).Methods("GET")
 	log.Fatal(http.ListenAndServe(":3000", myrouter))
 }
 

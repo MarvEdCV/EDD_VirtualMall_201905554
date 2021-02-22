@@ -48,12 +48,18 @@ func (m *Lista) Insertar(tienda Tienda) {
 // imprimir la lista
 func (m *Lista) Imprimir() {
 	aux := m.inicio
+	fmt.Println("{")
 	for aux != nil {
-		fmt.Print("<-[", aux.tienda, "]->")
+		fmt.Println("\n\"Nombre\":", aux.tienda.Nombre, ",\n\"Descripcion\":", aux.tienda.Descripcion, ",\n\"Contacto\":", aux.tienda.Contacto, ",\n\"Calificacion\":", aux.tienda.Calificacion)
+		fmt.Println()
 		aux = aux.siguiente
 	}
+	fmt.Print("}")
 	fmt.Println()
-	fmt.Println("Tamaño lista = ", m.tam)
+	fmt.Println("\nTOTAL TIENDAS = ", m.tam)
+	if m.tam == 0 {
+		fmt.Println("****LISTA VACIA*****")
+	}
 }
 
 //Buscar Elemento dentro de lista
