@@ -6,6 +6,8 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
+	"os/exec"
 	"strconv"
 
 	"./List"
@@ -42,8 +44,46 @@ type busqueda struct {
 func homePage(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Servidor en Go")
 }
+func filex(ruta string) *os.File {
+	file, x := os.OpenFile(ruta, os.O_RDWR, 07775)
+	if x != nil {
+		log.Fatal(x)
+	}
+	return file
+}
+func (f *NodoLinealizado) Grafo() {
+	os.Create("Grafo.dot")
+
+	grafo := filex("Grafo.dot")
+	fmt.Fprintf(grafo, "digraph G{\n")
+	fmt.Fprintf(grafo, "rankdir = DR; \n")
+	fmt.Fprintf(grafo, "color= black; \n")
+	fmt.Fprintf(grafo, "\tnode [shape=cds color=black]; \n")
+	fmt.Fprintf(grafo, "label= Linealizacion; \n")
+
+	var componente string = ""
+
+	for i := 0; i < len(Vector); i++ {
+		componente = "\t\tnodo" + strconv.Itoa(i) + "[label=\"" + Vector[i].Departamento + "-" + strconv.Itoa(Vector[i].Calificacion) + "-Indice-" + Vector[i].Indice + "\"];\n"
+		fmt.Fprintf(grafo, componente)
+	}
+	for i := 0; i < len(Vector); i++ {
+		if i == len(Vector)-1 {
+			componente = "nodo" + strconv.Itoa(i) + ";\n}"
+			fmt.Fprintf(grafo, componente)
+		} else {
+			componente = "nodo" + strconv.Itoa(i) + "->nodo" + strconv.Itoa(i+1) + ";\n"
+			fmt.Fprintf(grafo, componente)
+		}
+	}
+	grafo.Close()
+	exec.Command("dot", "-Tpng", "Grafo.dot", "-o", "Grafo.png ").Output()
+}
 func getArreglo(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "[1,2,3,4]")
+	for i := 0; i < len(Vector); i++ {
+		Vector[i].Grafo()
+	}
+
 }
 func metodopost(w http.ResponseWriter, r *http.Request) {
 	var row, column int
@@ -132,7 +172,8 @@ func Eliminar(w http.ResponseWriter, r *http.Request) {
 
 	for i := 0; i < len(Vector); i++ {
 		if Vector[i].Departamento == categoria && Vector[i].Calificacion == int(castcat) {
-			Vector[i].Lista.Eliminar(name)
+			fmt.Println("HOLLLLA")
+			Vector[i].Lista.Eliminar(string(name))
 			fmt.Println("La tienda :", name, " fue eliminada con exito")
 		}
 	}
