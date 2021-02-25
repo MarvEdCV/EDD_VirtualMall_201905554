@@ -83,7 +83,9 @@ func getArreglo(w http.ResponseWriter, r *http.Request) {
 	for i := 0; i < len(Vector); i++ {
 		Vector[i].Grafo()
 	}
-
+}
+func getSave(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("guardar")
 }
 func metodopost(w http.ResponseWriter, r *http.Request) {
 	var row, column int
@@ -198,6 +200,7 @@ func request() {
 	myrouter.HandleFunc("/TiendaEspecifica", metodopost1).Methods("POST")
 	myrouter.HandleFunc("/{id}", getposicion).Methods("GET")
 	myrouter.HandleFunc("/Eliminar/{categoria}/{nombre}/{calificacion}", Eliminar).Methods("GET")
+	myrouter.HandleFunc("/Guardar", getSave).Methods("GET")
 	log.Fatal(http.ListenAndServe(":3000", myrouter))
 }
 
