@@ -11,6 +11,7 @@ import (
 	"strconv"
 
 	"./List"
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
 
@@ -41,9 +42,6 @@ type busqueda struct {
 	Calificacion int
 }
 
-func homePage(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Servidor en Go")
-}
 func filex(ruta string) *os.File {
 	file, x := os.OpenFile(ruta, os.O_RDWR, 07775)
 	if x != nil {
@@ -192,9 +190,12 @@ func getposicion(w http.ResponseWriter, r *http.Request) {
 
 var id int
 
+func indexRoute(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(w, "Wecome the my GO API!")
+}
 func request() {
 	myrouter := mux.NewRouter().StrictSlash(true)
-	myrouter.HandleFunc("/", homePage)
+	myrouter.HandleFunc("/", indexRoute)
 	myrouter.HandleFunc("/getArreglo", getArreglo).Methods("GET")
 	myrouter.HandleFunc("/cargartienda", metodopost).Methods("POST")
 	myrouter.HandleFunc("/TiendaEspecifica", metodopost1).Methods("POST")
@@ -203,7 +204,7 @@ func request() {
 	myrouter.HandleFunc("/Guardar", getSave).Methods("GET")
 	log.Fatal(http.ListenAndServe(":3000", myrouter))
 
-	log.Fatal(http.ListenAndServe(":3000", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(router)))
+	log.Fatal(http.ListenAndServe(":3000", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(myrouter)))
 
 }
 
