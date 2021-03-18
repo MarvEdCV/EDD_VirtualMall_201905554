@@ -16,7 +16,15 @@ import (
 )
 
 var Vector []NodoLinealizado
+var arreglotiendas []List.Tienda
 
+type Tienda struct {
+	Nombre       string
+	Descripcion  string
+	Contacto     string
+	Calificacion int
+	Logo         string
+}
 type NodoLinealizado struct {
 	Indice       string
 	Departamento string
@@ -86,6 +94,7 @@ func getSave(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("guardar")
 }
 func metodopost(w http.ResponseWriter, r *http.Request) {
+	//Creo una lista para guardar tiendas
 	var row, column int
 	var countaux int
 	body, _ := ioutil.ReadAll(r.Body)
@@ -97,10 +106,10 @@ func metodopost(w http.ResponseWriter, r *http.Request) {
 	row = len(matrix.Datos)
 	column = len(matrix.Datos[0].Departamentos)
 	//Numero de posiciones del vector linealizado
+
 	var posiciones int
 	posiciones = row * column * 5
 	VectorLinealizado := make([]NodoLinealizado, posiciones)
-
 	countaux = 0
 	for x := 0; x < column; x++ {
 		for y := 0; y < len(matrix.Datos); y++ {
@@ -116,14 +125,25 @@ func metodopost(w http.ResponseWriter, r *http.Request) {
 				switch calificacion {
 				case 1:
 					Regular.Lista.Insertar(tiendita)
+					//Como en todos estos casos entrara a traer todas las listas en todos los casos guardo en mi lista de tiendas
+					arreglotiendas = append(arreglotiendas, tiendita)
 				case 2:
 					Buena.Lista.Insertar(tiendita)
+					//Como en todos estos casos entrara a traer todas las listas en todos los casos guardo en mi lista de tiendas
+					arreglotiendas = append(arreglotiendas, tiendita)
+
 				case 3:
 					MuyBuena.Lista.Insertar(tiendita)
+					//Como en todos estos casos entrara a traer todas las listas en todos los casos guardo en mi lista de tiendas
+					arreglotiendas = append(arreglotiendas, tiendita)
 				case 4:
 					Excelente.Lista.Insertar(tiendita)
+					//Como en todos estos casos entrara a traer todas las listas en todos los casos guardo en mi lista de tiendas
+					arreglotiendas = append(arreglotiendas, tiendita)
 				case 5:
 					Magnifica.Lista.Insertar(tiendita)
+					//Como en todos estos casos entrara a traer todas las listas en todos los casos guardo en mi lista de tiendas
+					arreglotiendas = append(arreglotiendas, tiendita)
 				}
 			}
 			VectorLinealizado[countaux] = *Regular
@@ -137,15 +157,25 @@ func metodopost(w http.ResponseWriter, r *http.Request) {
 			VectorLinealizado[countaux] = *Magnifica
 			countaux++
 		}
-	} /*
-		for z := 0; z < posiciones; z++ {
-			fmt.Println("posicion:", z)
-			fmt.Println(VectorLinealizado[z].Indice, VectorLinealizado[z].Departamento, VectorLinealizado[z].Calificacion)
-			VectorLinealizado[z].Lista.Imprimir()
-			fmt.Println()
-		}*/
-	fmt.Println(VectorLinealizado)
+	}
+	/*for z := 0; z < posiciones; z++ {
+		fmt.Println("posicion:", z)
+		fmt.Println(VectorLinealizado[z].Indice, VectorLinealizado[z].Departamento, VectorLinealizado[z].Calificacion)
+		VectorLinealizado[z].Lista.Imprimir()
+		fmt.Println()
+	}*/
+	//fmt.Println(VectorLinealizado)
+	fmt.Println(arreglotiendas)
 	Vector = VectorLinealizado
+}
+
+type listaTienda struct {
+	ListaTienda []List.Tienda `json:"listaTiendas"`
+}
+
+func getListaTiendas(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(&listaTienda{ListaTienda: arreglotiendas})
 }
 func metodopost1(w http.ResponseWriter, r *http.Request) {
 	body, _ := ioutil.ReadAll(r.Body)
@@ -194,8 +224,16 @@ func indexRoute(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(w, "Wecome the my GO API!")
 }
 func request() {
+	fmt.Print("vacio")
+}
+
+func rutaInicial(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Marvin Eduardo Catalan Veliz\nCarnet 201905554")
+}
+func main() {
 	myrouter := mux.NewRouter().StrictSlash(true)
 	myrouter.HandleFunc("/", indexRoute)
+	myrouter.HandleFunc("/Listatiendas", getListaTiendas).Methods("GET")
 	myrouter.HandleFunc("/getArreglo", getArreglo).Methods("GET")
 	myrouter.HandleFunc("/cargartienda", metodopost).Methods("POST")
 	myrouter.HandleFunc("/TiendaEspecifica", metodopost1).Methods("POST")
@@ -203,14 +241,5 @@ func request() {
 	myrouter.HandleFunc("/Eliminar/{categoria}/{nombre}/{calificacion}", Eliminar).Methods("GET")
 	myrouter.HandleFunc("/Guardar", getSave).Methods("GET")
 	log.Fatal(http.ListenAndServe(":3000", myrouter))
-
 	log.Fatal(http.ListenAndServe(":3000", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(myrouter)))
-
-}
-
-func rutaInicial(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Marvin Eduardo Catalan Veliz\nCarnet 201905554")
-}
-func main() {
-	request()
 }

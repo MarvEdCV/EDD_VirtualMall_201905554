@@ -4,13 +4,6 @@ import (
 	"fmt"
 )
 
-type Tienda struct {
-	Nombre       string
-	Descripcion  string
-	Contacto     string
-	Calificacion int
-}
-
 // Lugar donde almacenaremos la informacion
 type nodo struct {
 	anterior  *nodo
@@ -50,7 +43,7 @@ func (m *Lista) Imprimir() {
 	aux := m.inicio
 	fmt.Println("{")
 	for aux != nil {
-		fmt.Println("\n\"Nombre\":", aux.tienda.Nombre, ",\n\"Descripcion\":", aux.tienda.Descripcion, ",\n\"Contacto\":", aux.tienda.Contacto, ",\n\"Calificacion\":", aux.tienda.Calificacion)
+		fmt.Println("\n\"Nombre\":", aux.tienda.Nombre, ",\n\"Descripcion\":", aux.tienda.Descripcion, ",\n\"Contacto\":", aux.tienda.Contacto, ",\n\"Calificacion\":", aux.tienda.Calificacion, ",\n\"Link\":", aux.tienda.Logo)
 		fmt.Println()
 		aux = aux.siguiente
 	}
@@ -60,6 +53,14 @@ func (m *Lista) Imprimir() {
 	if m.tam == 0 {
 		fmt.Println("****LISTA VACIA*****")
 	}
+}
+
+type Tienda struct {
+	Nombre       string `json:"Nombre"`
+	Descripcion  string `json:"Descripcion"`
+	Contacto     string `json:"Contacto"`
+	Calificacion int    `json:"Calificacion"`
+	Logo         string `json:"Logo"`
 }
 
 //Buscar Elemento dentro de lista
