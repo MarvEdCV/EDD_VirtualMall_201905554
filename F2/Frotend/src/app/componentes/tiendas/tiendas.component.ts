@@ -14,7 +14,6 @@ export class TiendasComponent implements OnInit {
 
   constructor(private TiendasService: TiendasService) {
     this.TiendasService.getListaTiendas().subscribe((dataList:any)=>{
-      console.log('estoy aqui')
       this.listaTienda = dataList.listaTiendas;
       console.log(dataList)   
     },(err)=>{

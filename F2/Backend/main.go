@@ -11,12 +11,14 @@ import (
 	"strconv"
 
 	"./List"
+	"./TreeAVL"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
 
 var Vector []NodoLinealizado
 var arreglotiendas []List.Tienda
+var id int
 
 type Tienda struct {
 	Nombre       string
@@ -35,12 +37,10 @@ type Departamento struct {
 	Nombre  string
 	Tiendas []List.Tienda
 }
-
 type Dato struct {
 	Indice        string
 	Departamentos []Departamento
 }
-
 type Sobre struct {
 	Datos []Dato
 }
@@ -50,6 +50,12 @@ type busqueda struct {
 	Calificacion int
 }
 
+func indexRoute(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(w, "Wecome the my GO API!")
+}
+func rutaInicial(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Marvin Eduardo Catalan Veliz\nCarnet 201905554")
+}
 func filex(ruta string) *os.File {
 	file, x := os.OpenFile(ruta, os.O_RDWR, 07775)
 	if x != nil {
@@ -106,7 +112,7 @@ func metodopost(w http.ResponseWriter, r *http.Request) {
 	row = len(matrix.Datos)
 	column = len(matrix.Datos[0].Departamentos)
 	//Numero de posiciones del vector linealizado
-
+	fmt.Println(matrix)
 	var posiciones int
 	posiciones = row * column * 5
 	VectorLinealizado := make([]NodoLinealizado, posiciones)
@@ -158,14 +164,8 @@ func metodopost(w http.ResponseWriter, r *http.Request) {
 			countaux++
 		}
 	}
-	/*for z := 0; z < posiciones; z++ {
-		fmt.Println("posicion:", z)
-		fmt.Println(VectorLinealizado[z].Indice, VectorLinealizado[z].Departamento, VectorLinealizado[z].Calificacion)
-		VectorLinealizado[z].Lista.Imprimir()
-		fmt.Println()
-	}*/
 	//fmt.Println(VectorLinealizado)
-	fmt.Println(arreglotiendas)
+	//fmt.Println(arreglotiendas)
 	Vector = VectorLinealizado
 }
 
@@ -174,6 +174,7 @@ type listaTienda struct {
 }
 
 func getListaTiendas(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(&listaTienda{ListaTienda: arreglotiendas})
 }
@@ -192,7 +193,6 @@ func metodopost1(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 }
-
 func Eliminar(w http.ResponseWriter, r *http.Request) {
 	data := mux.Vars(r)
 	name := data["nombre"]
@@ -207,9 +207,7 @@ func Eliminar(w http.ResponseWriter, r *http.Request) {
 			fmt.Println("La tienda :", name, " fue eliminada con exito")
 		}
 	}
-
 }
-
 func getposicion(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	temp := vars["id"]
@@ -218,28 +216,50 @@ func getposicion(w http.ResponseWriter, r *http.Request) {
 	Vector[tempcast].Lista.Imprimir()
 }
 
-var id int
-
-func indexRoute(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(w, "Wecome the my GO API!")
-}
-func request() {
-	fmt.Print("vacio")
+//Pocesos para Productos e inventario
+//Estructura para cargar inventarios
+type Inventario struct {
+	Invetarios []TiendaEstructura
 }
 
-func rutaInicial(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Marvin Eduardo Catalan Veliz\nCarnet 201905554")
+type TiendaEstructura struct {
+	Tienda       string
+	Departamento string
+	Calificacion int
+	Productos    []TreeAVL.Productos
+}
+
+func CargarInventarios(w http.ResponseWriter, r *http.Request) {
+	body, _ := ioutil.ReadAll(r.Body)
+	var CapaInventario Inventario
+	json.Unmarshal(body, &CapaInventario)
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(CapaInventario)
+	var numeroTiendas int
+	var numeroProdutos int
+	numeroTiendas = len(CapaInventario.Invetarios)
+
+	for x := 0; x < numeroTiendas; x++ {
+		numeroProdutos = len(CapaInventario.Invetarios[x].Productos)
+		name := CapaInventario.Invetarios[x].Tienda
+		Arbol := TreeAVL.NewArbol(name)
+		for y := 0; y < numeroProdutos; y++ {
+			Arbol.InsertarRaiz(CapaInventario.Invetarios[x].Productos[y])
+		}
+		//fmt.Println(Arbol.Raiz)
+		Arbol.GrafoAVL(name)
+	}
 }
 func main() {
 	myrouter := mux.NewRouter().StrictSlash(true)
 	myrouter.HandleFunc("/", indexRoute)
-	myrouter.HandleFunc("/Listatiendas", getListaTiendas).Methods("GET")
+	myrouter.HandleFunc("/api/Listatiendas", getListaTiendas).Methods("GET")
 	myrouter.HandleFunc("/getArreglo", getArreglo).Methods("GET")
 	myrouter.HandleFunc("/cargartienda", metodopost).Methods("POST")
 	myrouter.HandleFunc("/TiendaEspecifica", metodopost1).Methods("POST")
 	myrouter.HandleFunc("/{id}", getposicion).Methods("GET")
 	myrouter.HandleFunc("/Eliminar/{categoria}/{nombre}/{calificacion}", Eliminar).Methods("GET")
 	myrouter.HandleFunc("/Guardar", getSave).Methods("GET")
-	log.Fatal(http.ListenAndServe(":3000", myrouter))
+	myrouter.HandleFunc("/cargarinventario", CargarInventarios).Methods("POST")
 	log.Fatal(http.ListenAndServe(":3000", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(myrouter)))
 }

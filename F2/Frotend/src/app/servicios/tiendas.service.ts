@@ -7,9 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TiendasService {
-   
-  private baurl="Listatiendas" 
-
+  
   constructor(private http: HttpClient) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -19,12 +17,11 @@ export class TiendasService {
    }
 
    getListaTiendas():Observable<any>{
-    let url = `${this.baurl}`;
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       }),
     }
-    return this.http.get<any>(baseURL+url,httpOptions);
+    return this.http.get<any>(baseURL+'api/Listatiendas',httpOptions);
    }
 }

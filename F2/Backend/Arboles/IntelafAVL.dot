@@ -1,0 +1,8 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Intelaf";color=black;
+node[label="Producto: Razer Huntsman mini Codigo: 4222"]4222;
+node[label="Producto: Logitech G G915TKL Codigo: 4232"]4232;
+4222->4232;
+}
+}

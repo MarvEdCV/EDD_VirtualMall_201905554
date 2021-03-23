@@ -1,0 +1,8 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Huawei";color=black;
+node[label="Producto: P40 Pro Codigo: 1222"]1222;
+node[label="Producto: Mate 40 Pro Codigo: 1232"]1232;
+1222->1232;
+}
+}
