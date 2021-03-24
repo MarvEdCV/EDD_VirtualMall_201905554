@@ -15,12 +15,12 @@ var Ok bool //Variable para verificar si existe o no el nodo
 //Estructuras a utilizar
 //Estructura para mis productos
 type Productos struct {
-	Nombre      string
-	Codigo      int
-	Descripcion string
-	Precio      float64
-	Cantidad    int
-	Imagen      string
+	Nombre      string  `json:"Nombre"`
+	Codigo      int     `json:"Codigo"`
+	Descripcion string  `json:"Descripcion"`
+	Precio      float64 `json:"Precio"`
+	Cantidad    int     `json:"Cantidad"`
+	Imagen      string  `json:"Imagen"`
 }
 
 //Estructura para cada nodo del arbol(en este caso productos)
@@ -33,15 +33,16 @@ type NodoAVL struct {
 
 //Estructura para el arbol
 type Arbol struct {
-	Raiz    *NodoAVL
-	Nombre  string
-	Tamanio int
+	Raiz           *NodoAVL
+	Nombre         string
+	Tamanio        int
+	ListaProductos []Productos
 }
 
 //Funciones a utilizar
 //Funcion para crear un nuevo arbol
 func NewArbol(name string) *Arbol {
-	return &Arbol{nil, name, 0}
+	return &Arbol{nil, name, 0, nil}
 }
 
 //Funcion para insertar nuevo nodo

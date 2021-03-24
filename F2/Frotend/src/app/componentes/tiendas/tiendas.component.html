@@ -1,4 +1,18 @@
-<ul>
-    <li *ngFor="let listax of listaTienda">{{listax.Nombre}}</li>
-</ul>
 
+<h2>Lista de tiendas</h2>
+<table class="table table-hover">
+    <thead class=" thead thead-dark">
+      <tr>
+        <th scope="col">Nombre Tienda</th>
+        <th scope="col">Imagen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let listax of listaTienda">
+        <td><a href="/Carrito">{{listax.Nombre}}</a></td>
+        <td>
+           <img src="{{listax.Logo}}" width="110px" class="img-fluid" class="rounded" alt="{{listax.Nombre}}" >
+        </td>
+      </tr>
+    </tbody>
+  </table>
