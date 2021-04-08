@@ -4,12 +4,22 @@ import (
 	"fmt"
 )
 
+type CodProducto struct {
+	Codigo int
+}
+type Pedido struct {
+	Fecha        string
+	Tienda       string
+	Departamento string
+	Calificacion int
+	Productos    []CodProducto
+}
 type nodoInterno struct { //nodo para guardar la informacion
-	Valor      int
-	X          int
-	Y          int
-	SiguienteX *nodoInterno
-	AnteriorX  *nodoInterno
+	PedidoMatriz Pedido
+	X            int
+	Y            int
+	SiguienteX   *nodoInterno
+	AnteriorX    *nodoInterno
 
 	SiguienteY *nodoInterno
 	AnteriorY  *nodoInterno
@@ -20,10 +30,10 @@ type listainterna struct { //lista que tendra cada cabecera de la matriz
 }
 
 type nodoCabecera struct { //nodo de la cabecesa de la condenada x o y
-	Valor     int
-	Siguiente *nodoCabecera
-	Anterior  *nodoCabecera
-	Lista     *listainterna
+	PedidoMatriz Pedido
+	Siguiente    *nodoCabecera
+	Anterior     *nodoCabecera
+	Lista        *listainterna
 }
 
 type listaCabecera struct { //lista para las cabeceras, se usa la misma para Y y X
@@ -32,7 +42,7 @@ type listaCabecera struct { //lista para las cabeceras, se usa la misma para Y y
 }
 
 type Matriz struct { //nodo central de la matriz
-	Capa       int
+	Capa       Pedido
 	CabecerasX *listaCabecera
 	CabecerasY *listaCabecera
 }
@@ -40,11 +50,11 @@ type Matriz struct { //nodo central de la matriz
 //Funciones para creacion de los elementos de la matriz
 
 //Nueva Matriz
-func NewMatriz(Valor int) *Matriz {
+func NewMatriz(inPedido Pedido) *Matriz {
 	cabeceraX := NewCabecera()
 	cabeceraY := NewCabecera()
 	fmt.Println("se creo una nueva matriz")
-	return &Matriz{Valor, cabeceraX, cabeceraY}
+	return &Matriz{inPedido, cabeceraX, cabeceraY}
 }
 
 //Nueva lista cabecera
@@ -64,7 +74,7 @@ func (m *listaCabecera) buscar(pos int) *nodoCabecera {
 	aux := m.Primero
 
 	for aux != nil {
-		if aux.Valor == pos {
+		if aux.PedidoMatriz.Calificacion == pos {
 			return aux
 		}
 		aux = aux.Siguiente
@@ -74,7 +84,7 @@ func (m *listaCabecera) buscar(pos int) *nodoCabecera {
 }
 
 //Insertar en matriz
-func (m *Matriz) Insertar(posx int, posy int, id int) {
+func (m *Matriz) Insertar(posx int, posy int, id Pedido) {
 	//crear nuevo nodo
 	nuevo := &nodoInterno{id, posx, posy, nil, nil, nil, nil} //los 4 apuntadores se inician como nulos
 
@@ -84,7 +94,7 @@ func (m *Matriz) Insertar(posx int, posy int, id int) {
 	if cabecerax == nil {
 		//se crea la lista interna de las cabeceras
 		lista := &listainterna{nil}
-		cabecerax = &nodoCabecera{posx, nil, nil, lista}
+		cabecerax = &nodoCabecera{id, nil, nil, lista}
 		m.CabecerasX.Insertarcabecera(cabecerax)
 	}
 
@@ -92,7 +102,7 @@ func (m *Matriz) Insertar(posx int, posy int, id int) {
 	cabeceray := m.CabecerasY.buscar(posy)
 	if cabeceray == nil {
 		listay := &listainterna{nil}
-		cabeceray = &nodoCabecera{posy, nil, nil, listay}
+		cabeceray = &nodoCabecera{id, nil, nil, listay}
 		m.CabecerasY.Insertarcabecera(cabeceray)
 	}
 
@@ -187,21 +197,21 @@ func (m *listaCabecera) Insertarcabecera(nuevo *nodoCabecera) {
 		m.Ultimo = nuevo
 	} else {
 		if m.Primero == m.Ultimo { //solo hay un dato
-			if nuevo.Valor > m.Primero.Valor {
+			if nuevo.PedidoMatriz.Calificacion > m.Primero.PedidoMatriz.Calificacion {
 				m.Primero.Siguiente = nuevo
 				nuevo.Anterior = m.Primero
 				m.Ultimo = nuevo
-			} else if nuevo.Valor < m.Primero.Valor {
+			} else if nuevo.PedidoMatriz.Calificacion < m.Primero.PedidoMatriz.Calificacion {
 				nuevo.Siguiente = m.Primero
 				m.Primero.Anterior = nuevo
 				m.Primero = nuevo
 			}
 		} else { //hay mas de un dato
-			if nuevo.Valor < m.Primero.Valor { //es menor al Primero
+			if nuevo.PedidoMatriz.Calificacion < m.Primero.PedidoMatriz.Calificacion { //es menor al Primero
 				nuevo.Siguiente = m.Primero
 				m.Primero.Anterior = nuevo
 				m.Primero = nuevo
-			} else if nuevo.Valor > m.Ultimo.Valor { // es mayor al Ultimo
+			} else if nuevo.PedidoMatriz.Calificacion > m.Ultimo.PedidoMatriz.Calificacion { // es mayor al Ultimo
 				m.Ultimo.Siguiente = nuevo
 				nuevo.Anterior = m.Ultimo
 				m.Ultimo = nuevo
@@ -209,7 +219,7 @@ func (m *listaCabecera) Insertarcabecera(nuevo *nodoCabecera) {
 				aux := m.Primero
 
 				for aux != nil {
-					if nuevo.Valor < aux.Valor {
+					if nuevo.PedidoMatriz.Calificacion < aux.PedidoMatriz.Calificacion {
 						nuevo.Siguiente = aux
 						nuevo.Anterior = aux.Anterior
 						aux.Anterior.Siguiente = nuevo
@@ -227,12 +237,12 @@ func (m *Matriz) Comprobar() {
 	pivote := listaAux.Primero
 	fmt.Println("**** recorrer cabeceras x ****")
 	for pivote != nil {
-		fmt.Println("cabecera: ", pivote.Valor)
+		fmt.Println("cabecera: ", pivote.PedidoMatriz.Calificacion)
 		listaInterna := pivote.Lista
 		pivoteInterno := listaInterna.Primero
 		if pivoteInterno != nil {
 			for pivoteInterno != nil {
-				fmt.Println(pivoteInterno.Valor)
+				fmt.Println(pivoteInterno.PedidoMatriz.Calificacion)
 				pivoteInterno = pivoteInterno.SiguienteX
 			}
 
@@ -252,7 +262,7 @@ func (m *Matriz) MostarCabecerasX() {
 	}
 
 	for aux != nil {
-		fmt.Println(aux.Valor)
+		fmt.Println(aux.PedidoMatriz.Calificacion)
 		aux = aux.Siguiente
 	}
 }
@@ -267,7 +277,7 @@ func (m *Matriz) MostarCabecerasY() {
 	}
 
 	for auxy != nil {
-		fmt.Println(auxy.Valor)
+		fmt.Println(auxy.PedidoMatriz.Calificacion)
 		auxy = auxy.Siguiente
 	}
 }

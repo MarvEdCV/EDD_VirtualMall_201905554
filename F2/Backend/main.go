@@ -14,6 +14,7 @@ import (
 	"strings"
 
 	"./List"
+	matriz "./Matriz"
 	"./TreeAVL"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
@@ -58,6 +59,7 @@ type listaTienda struct {
 	ListaTienda []List.Tienda `json:"listaTiendas"`
 }
 type Inventario struct {
+	//CAMBIAR palabra del archivo de entrada
 	Invetarios []TiendaEstructura
 }
 type TiendaEstructura struct {
@@ -68,6 +70,12 @@ type TiendaEstructura struct {
 }
 type listaProducto struct {
 	ListaProducto []TreeAVL.Productos `json:"listaProductos"`
+}
+
+//Estructuras para la carga de pedidos
+
+type SobrePedidos struct {
+	Pedidos []matriz.Pedido
 }
 
 func filex(ruta string) *os.File {
@@ -327,6 +335,14 @@ func ObtenerCarro(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(Productslista)
 }
+func CargarPedidos(w http.ResponseWriter, r *http.Request) {
+	body, _ := ioutil.ReadAll(r.Body)
+	var Pedidos SobrePedidos
+	json.Unmarshal(body, &Pedidos)
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(Pedidos)
+	fmt.Println(Pedidos)
+}
 func main() {
 	myrouter := mux.NewRouter().StrictSlash(true)
 	myrouter.HandleFunc("/getArreglo", getArreglo).Methods("GET")
@@ -340,5 +356,7 @@ func main() {
 	myrouter.HandleFunc("/api/ArbolAVL/{NombreTienda}", obtenerAVL).Methods("GET")
 	myrouter.HandleFunc("/api/CarroCompras/{Producto}", AgregarCarrito).Methods("POST")
 	myrouter.HandleFunc("/api/ObtenerCarro", ObtenerCarro).Methods("GET")
+	myrouter.HandleFunc("/cargarpedidos", CargarPedidos).Methods("POST")
+
 	log.Fatal(http.ListenAndServe(":3000", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(myrouter)))
 }
