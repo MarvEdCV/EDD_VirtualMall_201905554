@@ -22,6 +22,6 @@ export class TiendasComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    
   }
-
 }

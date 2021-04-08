@@ -4,6 +4,7 @@ import { CalendarioPedidosComponent } from './componentes/calendario-pedidos/cal
 import { CargaInvComponent } from './componentes/carga-inv/carga-inv.component';
 import { CargaPedidosComponent } from './componentes/carga-pedidos/carga-pedidos.component';
 import { CarritoComponent } from './componentes/carrito/carrito.component';
+import { ProductosComponent } from './componentes/productos/productos.component';
 import { TiendasComponent } from './componentes/tiendas/tiendas.component';
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
 {
   path: 'CargaPedidos',
   component: CargaPedidosComponent
+},
+{
+  path: 'Productos/:Nombre',
+  component: ProductosComponent
 }
 ];
 

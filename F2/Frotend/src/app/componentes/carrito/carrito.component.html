@@ -1,1 +1,27 @@
-<p>carrito works!</p>
+<h2>CARRITO DE COMPRAS {{Cant}}</h2>
+<table class="table table-hover">
+    <thead class=" thead thead-dark">
+      <tr>
+        <th scope="col">Nombre Producto</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Imagen</th>
+        <th scope="col">Quitar</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let listax of ListaProd">
+          <td>{{listax.Nombre}}</td>
+          <td>{{listax.Descripcion}}</td>
+          <td><textarea class="ml-4 mt-3" #Cantidad style="width: 100px; height: 30px;"></textarea></td>
+          <td>Q.{{listax.Precio}}</td>
+          <td>
+             <img src="{{listax.Imagen}}" width="110px" class="img-fluid" class="rounded" alt="{{listax.Nombre}}" >
+          </td>
+          <td><button  type="submit" class="btn btn-danger">Eliminar</button></td>
+         </tr>
+         <button  type="submit" class="btn btn-danger">Realizar Pedido</button>
+      </tbody>
+    </table>
+    

@@ -2,13 +2,16 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 	"os/exec"
 	"strconv"
+	"strings"
 
 	"./List"
 	"./TreeAVL"
@@ -239,7 +242,7 @@ func CargarInventarios(w http.ResponseWriter, r *http.Request) {
 		}
 		listaxx = append(listaxx, *Arbol)
 		//fmt.Println(Arbol.Raiz)
-		//Arbol.GrafoAVL(name)
+		Arbol.GrafoAVL(name)
 		//fmt.Println(Arbol.Nombre)
 		//fmt.Println(Arbol.ListaProductos)
 		//fmt.Println(listaxx)
@@ -266,6 +269,64 @@ func getListaProductos(w http.ResponseWriter, r *http.Request) {
 	arregloProductos = RetornarArreglo(nombre)
 	json.NewEncoder(w).Encode(&listaProducto{ListaProducto: arregloProductos})
 }
+func obtenerAVL(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	name := vars["NombreTienda"]
+	tree, err3 := os.Open("./Arboles/" + name + "AVL.png")
+	if err3 != nil {
+		log.Fatal(err3) // perhaps handle this nicer
+	}
+	defer tree.Close()
+	//devolvemos como respuesta la imagen
+	w.Header().Set("Content-Type", "image/png")
+	io.Copy(w, tree)
+}
+func errorResponse(w http.ResponseWriter, message string, httpStatusCode int) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(httpStatusCode)
+	resp := make(map[string]string)
+	resp["message"] = message
+	jsonResp, _ := json.Marshal(resp)
+	w.Write(jsonResp)
+}
+
+var Productslista []TreeAVL.Productos
+
+func AgregarCarrito(w http.ResponseWriter, r *http.Request) {
+	headerContentTtype := r.Header.Get("Content-Type")
+	if headerContentTtype != "application/json" {
+		errorResponse(w, "Content Type is not application/json", http.StatusUnsupportedMediaType)
+		return
+	}
+	var unmarshalErr *json.UnmarshalTypeError
+	var Producto TreeAVL.Productos
+	decoder := json.NewDecoder(r.Body)
+	decoder.DisallowUnknownFields()
+	err := decoder.Decode(&Producto)
+	if err != nil {
+		if errors.As(err, &unmarshalErr) {
+			errorResponse(w, "Bad Request. Wrong Type provided for field "+unmarshalErr.Field, http.StatusBadRequest)
+		} else {
+			errorResponse(w, "Bad Request "+err.Error(), http.StatusBadRequest)
+		}
+		return
+	}
+	proEntra := mux.Vars(r)
+	produc := proEntra["Producto"]
+	index := strings.Split(produc, "-")
+	fmt.Println(index)
+	errorResponse(w, "Obtenido", http.StatusOK)
+	Productslista = append(Productslista, Producto)
+	fmt.Print(Producto)
+	fmt.Println("lista del carritoooo")
+	fmt.Println(Productslista)
+	return
+
+}
+func ObtenerCarro(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(Productslista)
+}
 func main() {
 	myrouter := mux.NewRouter().StrictSlash(true)
 	myrouter.HandleFunc("/getArreglo", getArreglo).Methods("GET")
@@ -276,6 +337,8 @@ func main() {
 	myrouter.HandleFunc("/api/Listatiendas", getListaTiendas).Methods("GET")
 	myrouter.HandleFunc("/cargarinventario", CargarInventarios).Methods("POST")
 	myrouter.HandleFunc("/api/Listaproductos/{NombreTienda}", getListaProductos).Methods("GET")
+	myrouter.HandleFunc("/api/ArbolAVL/{NombreTienda}", obtenerAVL).Methods("GET")
+	myrouter.HandleFunc("/api/CarroCompras/{Producto}", AgregarCarrito).Methods("POST")
+	myrouter.HandleFunc("/api/ObtenerCarro", ObtenerCarro).Methods("GET")
 	log.Fatal(http.ListenAndServe(":3000", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(myrouter)))
-
 }

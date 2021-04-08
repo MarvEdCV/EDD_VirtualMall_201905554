@@ -9,6 +9,7 @@ import { CarritoComponent } from './componentes/carrito/carrito.component';
 import { CalendarioPedidosComponent } from './componentes/calendario-pedidos/calendario-pedidos.component';
 import { CargaInvComponent } from './componentes/carga-inv/carga-inv.component';
 import { CargaPedidosComponent } from './componentes/carga-pedidos/carga-pedidos.component';
+import { ProductosComponent } from './componentes/productos/productos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +17,8 @@ import { CargaPedidosComponent } from './componentes/carga-pedidos/carga-pedidos
     CarritoComponent,
     CalendarioPedidosComponent,
     CargaInvComponent,
-    CargaPedidosComponent
+    CargaPedidosComponent,
+    ProductosComponent
   ],
   imports: [
     BrowserModule,
