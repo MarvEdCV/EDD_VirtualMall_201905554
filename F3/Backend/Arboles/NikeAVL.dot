@@ -1,0 +1,8 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Nike";color=black;
+node[label="Producto: Nike SB Codigo: 2234"]2234;
+node[label="Producto: Air Jordan Codigo: 2313"]2313;
+2234->2313;
+}
+}

@@ -1,0 +1,30 @@
+
+
+<h2>Lista de Productos de {{Nombre}}</h2>
+<table class="table table-hover">
+    <thead class=" thead thead-dark">
+      <tr>
+        <th scope="col">Nombre Producto</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Existencia disponible</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Imagen</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Carrito</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let listax of listaProductos">
+        <td><a href="">{{listax.Nombre}}</a></td>
+        <td>{{listax.Descripcion}}</td>
+        <td>{{listax.Cantidad}}</td>
+        <td>Q.{{listax.Precio}}</td>
+        <td>
+           <img src="{{listax.Imagen}}" width="110px" class="img-fluid" class="rounded" alt="{{listax.Nombre}}" >
+        </td>
+        <td><textarea class="ml-4 mt-3" #Cantidad style="width: 100px; height: 30px;"></textarea></td>
+        <td><button  type="submit" class="btn btn-danger" (click)="agregarProducto(listax, Cantidad.value)" value={{listax}}>Agregar</button></td>
+      </tr>
+    </tbody>
+  </table>
+  
