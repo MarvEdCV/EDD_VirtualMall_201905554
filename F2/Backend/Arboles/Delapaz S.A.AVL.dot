@@ -1,0 +1,34 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Delapaz S.A.";color=black;
+node[label="Producto: Inteligente Hormigón Pelota Codigo: 301"]301;
+node[label="Producto: Ergonómico Madera Mesa Codigo: 296"]296;
+node[label="Producto: Elegante Soft Bike Codigo: 294"]294;
+node[label="Producto: Ergonómico Cotton Embutidos Codigo: 292"]292;
+node[label="Producto: Genérica Frozen Zapatos Codigo: 293"]293;
+node[label="Producto: Artesanal Frozen Guantes Codigo: 295"]295;
+node[label="Producto: Elegante Caucho Mesa Codigo: 298"]298;
+node[label="Producto: Pequeño Caucho Tuna Codigo: 297"]297;
+node[label="Producto: Gorgeous Frozen Presidente Codigo: 300"]300;
+node[label="Producto: Práctica Frozen Pescado Codigo: 299"]299;
+node[label="Producto: Sabrosa Cotton Toallas Codigo: 304"]304;
+node[label="Producto: Increíble Metal Toallas Codigo: 302"]302;
+node[label="Producto: Elegante Plástico Teclado Codigo: 303"]303;
+node[label="Producto: Ergonómico Cotton Zapatos Codigo: 306"]306;
+node[label="Producto: Refinado Soft Auto Codigo: 305"]305;
+292->293;
+294->292;
+294->295;
+296->294;
+298->297;
+300->299;
+298->300;
+296->298;
+301->296;
+302->303;
+304->302;
+306->305;
+304->306;
+301->304;
+}
+}

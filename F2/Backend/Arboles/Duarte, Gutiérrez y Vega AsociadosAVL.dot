@@ -1,0 +1,6 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Duarte, Gutiérrez y Vega Asociados";color=black;
+node[label="Producto: Sabrosa Frozen Bike Codigo: 614"]614;
+}
+}

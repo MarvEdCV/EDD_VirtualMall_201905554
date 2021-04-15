@@ -1,0 +1,16 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Corrales Mojica S.A.";color=black;
+node[label="Producto: Refinado Cotton Bike Codigo: 179"]179;
+node[label="Producto: Gorgeous Fresco Toallas Codigo: 177"]177;
+node[label="Producto: Hecho a mano Cotton Teclado Codigo: 176"]176;
+node[label="Producto: Increíble Madera Bike Codigo: 178"]178;
+node[label="Producto: Artesanal Acero Presidente Codigo: 180"]180;
+node[label="Producto: Ergonómico Fresco Tuna Codigo: 181"]181;
+177->176;
+177->178;
+179->177;
+180->181;
+179->180;
+}
+}

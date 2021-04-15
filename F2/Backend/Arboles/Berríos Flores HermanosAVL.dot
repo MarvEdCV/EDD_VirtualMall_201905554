@@ -1,0 +1,44 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Berríos Flores Hermanos";color=black;
+node[label="Producto: Increíble Frozen Tuna Codigo: 379"]379;
+node[label="Producto: Licencia Cotton Auto Codigo: 376"]376;
+node[label="Producto: Increíble Plástico Pizza Codigo: 374"]374;
+node[label="Producto: Gorgeous Soft Pantalones Codigo: 373"]373;
+node[label="Producto: Artesanal Acero Pollo Codigo: 375"]375;
+node[label="Producto: Ergonómico Madera Pizza Codigo: 377"]377;
+node[label="Producto: Refinado Plástico Pescado Codigo: 378"]378;
+node[label="Producto: Inteligente Madera Jabón Codigo: 387"]387;
+node[label="Producto: Inteligente Plástico Camisa Codigo: 383"]383;
+node[label="Producto: Sin marca Hormigón Tuna Codigo: 381"]381;
+node[label="Producto: Licencia Cotton Sombrero Codigo: 380"]380;
+node[label="Producto: Fantástico Plástico Ensalada Codigo: 382"]382;
+node[label="Producto: Artesanal Metal Embutidos Codigo: 385"]385;
+node[label="Producto: Increíble Frozen Guantes Codigo: 384"]384;
+node[label="Producto: Elegante Soft Pantalones Codigo: 386"]386;
+node[label="Producto: Artesanal Granito Auto Codigo: 390"]390;
+node[label="Producto: Artesanal Plástico Mesa Codigo: 389"]389;
+node[label="Producto: Artesanal Acero Ratón Codigo: 388"]388;
+node[label="Producto: Gorgeous Madera Pollo Codigo: 391"]391;
+node[label="Producto: Refinado Cotton Tuna Codigo: 392"]392;
+374->373;
+374->375;
+376->374;
+377->378;
+376->377;
+379->376;
+381->380;
+381->382;
+383->381;
+385->384;
+385->386;
+383->385;
+387->383;
+389->388;
+390->389;
+391->392;
+390->391;
+387->390;
+379->387;
+}
+}

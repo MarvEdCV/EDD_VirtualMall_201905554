@@ -1,0 +1,48 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Armas S.L.";color=black;
+node[label="Producto: Rústico Metal Pizza Codigo: 565"]565;
+node[label="Producto: Sabrosa Metal Pizza Codigo: 556"]556;
+node[label="Producto: Genérica Fresco Ensalada Codigo: 553"]553;
+node[label="Producto: Refinado Frozen Mesa Codigo: 552"]552;
+node[label="Producto: Elegante Acero Auto Codigo: 554"]554;
+node[label="Producto: Sin marca Fresco Mesa Codigo: 555"]555;
+node[label="Producto: Fantástico Granito Tuna Codigo: 560"]560;
+node[label="Producto: Artesanal Metal Pollo Codigo: 558"]558;
+node[label="Producto: Pequeño Metal Embutidos Codigo: 559"]559;
+node[label="Producto: Práctica Madera Pelota Codigo: 563"]563;
+node[label="Producto: Gorgeous Fresco Presidente Codigo: 564"]564;
+node[label="Producto: Rústico Frozen Jabón Codigo: 573"]573;
+node[label="Producto: Práctica Metal Zapatos Codigo: 569"]569;
+node[label="Producto: Inteligente Caucho Zapatos Codigo: 567"]567;
+node[label="Producto: Fantástico Acero Queso Codigo: 566"]566;
+node[label="Producto: Elegante Madera Pizza Codigo: 568"]568;
+node[label="Producto: Gorgeous Acero Presidente Codigo: 570"]570;
+node[label="Producto: Gorgeous Soft Pizza Codigo: 572"]572;
+node[label="Producto: Hecho a mano Madera Queso Codigo: 575"]575;
+node[label="Producto: Genérica Soft Jabón Codigo: 574"]574;
+node[label="Producto: Sin marca Granito Embutidos Codigo: 578"]578;
+node[label="Producto: Sabrosa Madera Zapatos Codigo: 579"]579;
+553->552;
+554->555;
+553->554;
+556->553;
+558->559;
+560->558;
+563->564;
+560->563;
+556->560;
+565->556;
+567->566;
+567->568;
+569->567;
+570->572;
+569->570;
+573->569;
+575->574;
+578->579;
+575->578;
+573->575;
+565->573;
+}
+}

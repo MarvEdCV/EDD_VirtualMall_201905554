@@ -1,0 +1,16 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Delgadillo Delapaz e Hijos";color=black;
+node[label="Producto: Práctica Hormigón Pelota Codigo: 898"]898;
+node[label="Producto: Gorgeous Granito Pizza Codigo: 896"]896;
+node[label="Producto: Gorgeous Acero Jabón Codigo: 897"]897;
+node[label="Producto: Sabrosa Hormigón Pizza Codigo: 902"]902;
+node[label="Producto: Gorgeous Granito Sombrero Codigo: 901"]901;
+node[label="Producto: Gorgeous Caucho Camisa Codigo: 903"]903;
+896->897;
+898->896;
+902->901;
+902->903;
+898->902;
+}
+}
