@@ -1,0 +1,47 @@
+<h1 class="textoxx">VIRTUAL MALL</h1>
+<div class="register">
+    <form class="custom-form" method="post">
+      <h1 class="texto">Registro</h1>
+      <input
+      type="nombre"
+      [(ngModel)]="nombre"
+      name="nombre"
+      placeholder="Nombre"
+      required="required"
+      />
+      <input
+        type="email"
+        [(ngModel)]="email"
+        name="email"
+        placeholder="Correo Electrónico"
+        required="required"
+      />
+      
+      <input
+      type="dpi"
+      [(ngModel)]="dpi"
+      name="dpi"
+      placeholder="DPI"
+      required="required"
+      />
+    <input
+    type="cuenta"
+    [(ngModel)]="cuenta"
+    name="cuenta"
+    placeholder="Nombre de Usuario"
+    required="required"
+    />
+    <input
+      type="password"
+        [(ngModel)]="password"
+        name="password"
+        placeholder="Contraseña"
+        required="required"
+      />
+      
+      <button type="submit" (click)="registraar()">Registrarme</button>
+    </form>
+    <div class="texto">
+      <a href="http://localhost:4200/Login" >Iniciar Sesion</a>
+  </div>
+  </div>

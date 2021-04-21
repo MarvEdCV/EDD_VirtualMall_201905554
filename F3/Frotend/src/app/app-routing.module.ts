@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CalendarioPedidosComponent } from './componentes/calendario-pedidos/calendario-pedidos.component';
-import { CargaInvComponent } from './componentes/carga-inv/carga-inv.component';
-import { CargaPedidosComponent } from './componentes/carga-pedidos/carga-pedidos.component';
+
 import { CarritoComponent } from './componentes/carrito/carrito.component';
+import { LoginComponent } from './componentes/login/login.component';
 import { ProductosComponent } from './componentes/productos/productos.component';
+import { RegistroComponent } from './componentes/registro/registro.component';
 import { TiendasComponent } from './componentes/tiendas/tiendas.component';
 
 const routes: Routes = [
@@ -17,20 +17,16 @@ const routes: Routes = [
   component: CarritoComponent
 },
 {
-  path: 'Calendario',
-  component: CalendarioPedidosComponent
-},
-{
-  path: 'CargaInv',
-  component: CargaInvComponent
-},
-{
-  path: 'CargaPedidos',
-  component: CargaPedidosComponent
-},
-{
   path: 'Productos/:Nombre',
   component: ProductosComponent
+},
+{
+  path: 'Login',
+  component: LoginComponent
+},
+{
+  path: 'Registro',
+  component: RegistroComponent
 }
 ];
 

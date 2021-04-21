@@ -1,0 +1,4 @@
+Perfeccionar login
+
+
+Metodo splitnode, ver el puntero doble de Puser

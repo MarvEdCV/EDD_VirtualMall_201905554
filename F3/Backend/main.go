@@ -13,6 +13,7 @@ import (
 	"strconv"
 	"strings"
 
+	"./ArbolB"
 	"./List"
 	matriz "./Matriz"
 	"./TreeAVL"
@@ -25,6 +26,7 @@ var arreglotiendas []List.Tienda
 var arregloProductos []TreeAVL.Productos
 var id int
 var listaxx []TreeAVL.Arbol
+var listausuarios []ArbolB.Usuario //lista temporal para guardar los usuarios
 
 type Tienda struct {
 	Nombre       string
@@ -222,13 +224,14 @@ func Eliminar(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 }
-func getposicion(w http.ResponseWriter, r *http.Request) {
+
+/*func getposicion(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	temp := vars["id"]
 	tempcast, _ := strconv.ParseInt(temp, 10, 64)
 	fmt.Println("\nLA POSICION EN EL VECTOR DE LA LISTA ES: ", tempcast)
 	Vector[tempcast].Lista.Imprimir()
-}
+}*/
 
 //Pocesos para Productos e inventario
 func CargarInventarios(w http.ResponseWriter, r *http.Request) {
@@ -343,12 +346,41 @@ func CargarPedidos(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(Pedidos)
 	fmt.Println(Pedidos)
 }
+
+func Registrarr(w http.ResponseWriter, r *http.Request) {
+	headerContentTtype := r.Header.Get("Content-Type")
+	if headerContentTtype != "application/json" {
+		errorResponse(w, "Content Type is not application/json", http.StatusUnsupportedMediaType)
+		return
+	}
+
+	var unmarshalErr *json.UnmarshalTypeError
+	var user ArbolB.Usuario
+	decoder := json.NewDecoder(r.Body)
+	decoder.DisallowUnknownFields()
+	err := decoder.Decode(&user)
+	if err != nil {
+		if errors.As(err, &unmarshalErr) {
+			errorResponse(w, "Bad Request. Wrong Type provided for field "+unmarshalErr.Field, http.StatusBadRequest)
+		} else {
+			errorResponse(w, "Bad Request "+err.Error(), http.StatusBadRequest)
+		}
+		return
+	}
+
+	errorResponse(w, "ingresado", http.StatusOK)
+	listausuarios = append(listausuarios, user)
+	fmt.Println("lista de usuarios")
+	fmt.Println(listausuarios)
+	return
+
+}
 func main() {
 	myrouter := mux.NewRouter().StrictSlash(true)
 	myrouter.HandleFunc("/getArreglo", getArreglo).Methods("GET")
 	myrouter.HandleFunc("/cargartienda", metodopost).Methods("POST")
 	myrouter.HandleFunc("/TiendaEspecifica", metodopost1).Methods("POST")
-	myrouter.HandleFunc("/{id}", getposicion).Methods("GET")
+	//myrouter.HandleFunc("/{id}", getposicion).Methods("GET")
 	myrouter.HandleFunc("/Eliminar/{categoria}/{nombre}/{calificacion}", Eliminar).Methods("GET")
 	myrouter.HandleFunc("/api/Listatiendas", getListaTiendas).Methods("GET")
 	myrouter.HandleFunc("/cargarinventario", CargarInventarios).Methods("POST")
@@ -356,6 +388,7 @@ func main() {
 	myrouter.HandleFunc("/api/ArbolAVL/{NombreTienda}", obtenerAVL).Methods("GET")
 	myrouter.HandleFunc("/api/CarroCompras/{Producto}", AgregarCarrito).Methods("POST")
 	myrouter.HandleFunc("/api/ObtenerCarro", ObtenerCarro).Methods("GET")
+	myrouter.HandleFunc("/api/Registrar", Registrarr).Methods("POST")
 	myrouter.HandleFunc("/cargarpedidos", CargarPedidos).Methods("POST")
 
 	log.Fatal(http.ListenAndServe(":3000", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(myrouter)))

@@ -1,0 +1,25 @@
+<h1 class="textox">VIRTUAL MALL</h1>
+    <div class="login">
+        <form class="custom-form" method="post">
+          <h1 class="texto">Inicio de sesión</h1>
+          <input
+            type="cuenta"
+            [(ngModel)]="cuenta"
+            name="cuenta"
+            placeholder="Nombre de Usuario"
+            required="required"
+          />
+          <input
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            placeholder="Contraseña"
+            required="required"
+          />
+          <button type="submit">Iniciar Sesión</button>
+        </form> 
+        <div class="texto">
+            <a href="http://localhost:4200/Registro" >Crear una nueva cuenta</a>
+        </div> 
+      </div>
+
