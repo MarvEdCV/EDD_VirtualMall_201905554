@@ -2,3 +2,7 @@ Perfeccionar login
 
 
 Metodo splitnode, ver el puntero doble de Puser
+
+Cambiar DPI a int en Angular y también en go
+
+Toca RemoveVal linea 124 

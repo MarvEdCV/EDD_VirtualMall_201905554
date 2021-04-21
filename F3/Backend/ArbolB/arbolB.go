@@ -81,3 +81,55 @@ func splitNode(User Usuario, Puser *Usuario, Pos int, Node *btreeNode, Child *bt
 	(*Newnode).Link[0] = Node.Link[Node.Count]
 	Node.Count--
 }
+
+/* establece el valor DPI en el nodo */
+func setValueInNode(User Usuario, puser *Usuario, Node *btreeNode, Child **btreeNode) bool {
+	var Pos int
+	if Node == nil {
+		*puser = User
+		*Child = nil
+		return true
+
+	}
+	if User.Dpi < Node.Val[1].Dpi {
+		Pos = 0
+
+	} else {
+		for Pos = Node.Count; User.Dpi < Node.Val[Pos].Dpi && Pos > 1; Pos-- {
+			if User.Dpi == Node.Val[Pos].Dpi {
+				fmt.Println("NODO DUPLICADO")
+				return false
+			}
+		}
+	}
+	if setValueInNode(User, puser, Node.Link[Pos], Child) {
+		if Node.Count < Max {
+			addValToNode(*puser, Pos, Node, *Child)
+		} else {
+			splitNode(*puser, puser, Pos, Node, *Child, Child)
+			return true
+		}
+	}
+	return false
+
+}
+func Insertion(User Usuario) {
+	var Flag bool
+	var i Usuario
+	var Child *btreeNode
+
+	Flag = setValueInNode(User, &i, Root, &Child)
+	if Flag == true {
+		Root = createNode(i, Child)
+	}
+}
+
+/* copia sucesor del valor a eliminar */
+func CopySuccessor(MyNode *btreeNode, Pos int) {
+	var Dummy *btreeNode
+	Dummy = MyNode.Link[Pos]
+	for Dummy.Link[0] != nil {
+		Dummy = Dummy.Link[0]
+	}
+	MyNode.Val[Pos] = Dummy.Val[1]
+}
