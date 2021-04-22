@@ -408,8 +408,8 @@ func graficarCifradoSensible(actual *Nodo, cad *strings.Builder, arr map[string]
 	}
 }
 
-func guardarArchivo(cadena string) {
-	f, err := os.Create("diagrama.dot")
+func guardarArchivo(cadena string, nombre string) {
+	f, err := os.Create(nombre + "diagrama.dot")
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -441,7 +441,7 @@ func (this *Arbol) Graficar() {
 	m := make(map[string]*Nodo)
 	graficar(this.Raiz, &builder, m, nil, 0)
 	fmt.Fprintf(&builder, "}")
-	guardarArchivo(builder.String())
+	guardarArchivo(builder.String(), "GraficoNormal")
 	generarImagen("arbolNoCifrado.png")
 }
 
@@ -451,7 +451,7 @@ func (this *Arbol) GraficarSensible() {
 	m := make(map[string]*Nodo)
 	graficarCifradoSensible(this.Raiz, &builder, m, nil, 0)
 	fmt.Fprintf(&builder, "}")
-	guardarArchivo(builder.String())
+	guardarArchivo(builder.String(), "GraficoSensible")
 	generarImagen("arbolSensible.png")
 }
 
