@@ -14,6 +14,7 @@ import (
 	"strings"
 
 	"./ArbolB"
+	"./Arbolbb"
 	"./List"
 	matriz "./Matriz"
 	"./TreeAVL"
@@ -375,7 +376,142 @@ func Registrarr(w http.ResponseWriter, r *http.Request) {
 	return
 
 }
+
+type TodoU struct {
+	Usuarios []Arbolbb.Usuario
+}
+
+func CargarUsuarios(w http.ResponseWriter, r *http.Request) {
+	body, _ := ioutil.ReadAll(r.Body)
+	var UsuariosC TodoU
+	json.Unmarshal(body, &UsuariosC)
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(UsuariosC)
+	fmt.Println(UsuariosC)
+	arbol := Arbolbb.NewArbol(5)
+	for i := 0; i < len(UsuariosC.Usuarios); i++ {
+		arbol.Insertar(Arbolbb.NewKey(UsuariosC.Usuarios[i]))
+	}
+	arbol.Graficar()
+	arbol.GraficarSensible()
+
+}
+
 func main() {
+	/*
+		user1 := Arbolbb.Usuario{
+			Dpi:      55,
+			Nombre:   "Omar",
+			Correo:   "ss",
+			Password: "s",
+			Cuenta:   "sswww",
+		}
+
+		user2 := Arbolbb.Usuario{
+			Dpi:      455,
+			Nombre:   "Andrea",
+			Correo:   "ss",
+			Password: "s",
+			Cuenta:   "sswww",
+		}
+
+		user3 := Arbolbb.Usuario{
+			Dpi:      5,
+			Nombre:   "Daniel",
+			Correo:   "ss",
+			Password: "s",
+			Cuenta:   "sswww",
+		}
+		user4 := Arbolbb.Usuario{
+			Dpi:      4,
+			Nombre:   "Renato",
+			Correo:   "ss",
+			Password: "s",
+			Cuenta:   "sswww",
+		}
+		user5 := Arbolbb.Usuario{
+			Dpi:      51,
+			Nombre:   "Luis",
+			Correo:   "ss",
+			Password: "s",
+			Cuenta:   "sswww",
+		}
+		user6 := Arbolbb.Usuario{
+			Dpi:      6,
+			Nombre:   "Joaquin",
+			Correo:   "ss",
+			Password: "s",
+			Cuenta:   "sswww",
+		}
+		user7 := Arbolbb.Usuario{
+			Dpi:      7,
+			Nombre:   "Rebeca",
+			Correo:   "ss",
+			Password: "s",
+			Cuenta:   "sswww",
+		}
+		user8 := Arbolbb.Usuario{
+			Dpi:      8,
+			Nombre:   "Ana",
+			Correo:   "ss",
+			Password: "s",
+			Cuenta:   "sswww",
+		}
+		user9 := Arbolbb.Usuario{
+			Dpi:      9,
+			Nombre:   "Hpla",
+			Correo:   "ss",
+			Password: "s",
+			Cuenta:   "sswww",
+		}
+		user10 := Arbolbb.Usuario{
+			Dpi:      10,
+			Nombre:   "Hpla",
+			Correo:   "ss",
+			Password: "s",
+			Cuenta:   "sswww",
+		}
+		user11 := Arbolbb.Usuario{
+			Dpi:      1,
+			Nombre:   "Pedro",
+			Correo:   "ss",
+			Password: "s",
+			Cuenta:   "sswww",
+		}
+		user12 := Arbolbb.Usuario{
+			Dpi:      777,
+			Nombre:   "Lucia",
+			Correo:   "ss",
+			Password: "s",
+			Cuenta:   "sswww",
+		}
+		user13 := Arbolbb.Usuario{
+			Dpi:      1,
+			Nombre:   "Juan",
+			Correo:   "ss",
+			Password: "s",
+			Cuenta:   "sswww",
+		}
+
+		arbol := Arbolbb.NewArbol(5)
+
+		arbol.Insertar(Arbolbb.NewKey(user1))
+		arbol.Insertar(Arbolbb.NewKey(user2))
+		arbol.Insertar(Arbolbb.NewKey(user3))
+		arbol.Insertar(Arbolbb.NewKey(user4))
+		arbol.Insertar(Arbolbb.NewKey(user5))
+		arbol.Insertar(Arbolbb.NewKey(user6))
+		arbol.Insertar(Arbolbb.NewKey(user7))
+		arbol.Insertar(Arbolbb.NewKey(user8))
+		arbol.Insertar(Arbolbb.NewKey(user9))
+		arbol.Insertar(Arbolbb.NewKey(user10))
+		arbol.Insertar(Arbolbb.NewKey(user11))
+		arbol.Insertar(Arbolbb.NewKey(user12))
+		arbol.Insertar(Arbolbb.NewKey(user13))
+		arbol.Graficar()
+
+		arbol.GraficarSensible()
+	*/
 	myrouter := mux.NewRouter().StrictSlash(true)
 	myrouter.HandleFunc("/getArreglo", getArreglo).Methods("GET")
 	myrouter.HandleFunc("/cargartienda", metodopost).Methods("POST")
@@ -390,6 +526,7 @@ func main() {
 	myrouter.HandleFunc("/api/ObtenerCarro", ObtenerCarro).Methods("GET")
 	myrouter.HandleFunc("/api/Registrar", Registrarr).Methods("POST")
 	myrouter.HandleFunc("/cargarpedidos", CargarPedidos).Methods("POST")
-
+	myrouter.HandleFunc("/cargarUsuarios", CargarUsuarios).Methods("POST")
 	log.Fatal(http.ListenAndServe(":3000", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(myrouter)))
+
 }
