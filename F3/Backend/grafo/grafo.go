@@ -51,6 +51,8 @@ func (g *Grafo) InsertarNuevo(Depa string) {
 	}
 }
 
+var listayautilizados []string
+
 //funcion para agregar nodos adyasenes a los nodos
 func (g *Grafo) AgregarAdyasente(Depa string, Depaadya string, Dist int) {
 	//dato es el nodo al cual se le agregara un adyasente
@@ -97,40 +99,79 @@ func (g *Grafo) Buscar(Depa string) *nodo {
 	return nil
 }
 
+var retornarcamino string
+
 //Ruta mas corta
-func (g Grafo) RutaMasCorta(Inicio string, Fin string) {
-	var Camino string
-	var listatemp []int
-	var NumMenor int
-	Camino = Inicio + "-->"
-	if g.inicio != nil {
-		temp := g.inicio
-		for temp != nil && Inicio != Fin {
-			tempad := temp.lista.inicio
-			tempad1 := temp.lista.inicio
-			if temp.Departamento == Inicio {
-				for tempad1 != nil {
-					listatemp = append(listatemp, tempad1.Distancia)
-					tempad1 = tempad1.siguiente
-				}
-				NumMenor = ordenarMenor(listatemp, len(listatemp))
+func (g Grafo) RutaMasCorta(Inicio string, Fin string, tamanio int) string {
+	terminado := false
+	rr := Inicio
+	for terminado == false {
+		var Camino string
+		var listatemp []int
+		var NumMenor int
+		var Anterior string
+		Camino = "***" + Inicio + "-->"
+		listayautilizados = append(listayautilizados, "inicio")
+		if g.inicio != nil {
+			temp := g.inicio
+			if g.BuscarNodoyaUtilizado(temp.Departamento) == true {
+				temp = temp.siguiente
 			}
-			if temp.Departamento == Inicio {
-
-				for tempad != nil {
-
-					if tempad.Distancia == NumMenor {
-						Camino = Camino + tempad.Departamento + "-->"
-						fmt.Println(tempad.Departamento)
-						Inicio = tempad.Departamento
+			for temp != nil && Inicio != Fin {
+				tempad := temp.lista.inicio
+				tempad1 := temp.lista.inicio
+				if temp.Departamento == Inicio {
+					for tempad1 != nil {
+						dist := tempad1.Distancia
+						if Anterior == tempad1.Departamento {
+							dist = dist * 10000000000
+						}
+						listatemp = append(listatemp, dist)
+						tempad1 = tempad1.siguiente
 					}
-					tempad = tempad.siguiente
+					NumMenor = ordenarMenor(listatemp, len(listatemp))
+					listatemp = nil
 				}
+				if temp.Departamento == Inicio {
+
+					for tempad != nil {
+						if tempad.Distancia == NumMenor {
+							Camino = Camino + tempad.Departamento + "-->"
+							if g.BuscarNodoyaUtilizado(tempad.Departamento) == false {
+								listayautilizados = append(listayautilizados, tempad.Departamento)
+							}
+							Anterior = Inicio
+							Inicio = tempad.Departamento
+						}
+						tempad = tempad.siguiente
+					}
+				}
+				if temp.siguiente == nil {
+					temp = g.inicio
+				} else {
+					temp = temp.siguiente
+				}
+
 			}
-			temp = temp.siguiente
+			fmt.Println(Camino + rr)
+			retornarcamino = retornarcamino + Camino + rr
+
 		}
-		fmt.Println(Camino)
+		if len(listayautilizados) == tamanio {
+			terminado = true
+		} else {
+			terminado = false
+		}
 	}
+	return retornarcamino
+}
+func (g Grafo) BuscarNodoyaUtilizado(Nodo string) bool {
+	for i := 0; i < len(listayautilizados); i++ {
+		if Nodo == listayautilizados[i] {
+			return true
+		}
+	}
+	return false
 }
 
 //Funcion para ordenar de menor a mayor

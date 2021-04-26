@@ -1,0 +1,8 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Carmona, Malave y Rosado Asociados";color=black;
+node[label="Producto: Elegante Granito Computadora Codigo: 287"]287;
+node[label="Producto: Gorgeous Plástico Ratón Codigo: 286"]286;
+287->286;
+}
+}

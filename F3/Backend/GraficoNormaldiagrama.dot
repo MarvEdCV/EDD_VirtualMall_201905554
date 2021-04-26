@@ -1,8 +1,0 @@
-digraph G{
-node[shape=record]
-node0xc000164450[label="<f0>|<f1>DPI: 45 \n Nombre: Marvin2 \n Correo: edd@ingenieria.usac.edu.gt |<f2>"]
-node0xc000164510[label="<f0>|<f1>DPI: 1 \n Nombre: Marvin2 \n Correo: edd@ingenieria.usac.edu.gt |<f2>|<f3>DPI: 2 \n Nombre: Marvin2 \n Correo: edd@ingenieria.usac.edu.gt |<f4>"]
-node0xc000164450:f0->node0xc000164510
-node0xc0001644b0[label="<f0>|<f1>DPI: 29910061000 \n Nombre: Marvin \n Correo: marvintop2apex@guatemala.com |<f2>|<f3>DPI: 110223078923 \n Nombre: Marvin2 \n Correo: edd@ingenieria.usac.edu.gt |<f4>"]
-node0xc000164450:f2->node0xc0001644b0
-}

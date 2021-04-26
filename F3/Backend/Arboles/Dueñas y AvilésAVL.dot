@@ -1,0 +1,44 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Dueñas y Avilés";color=black;
+node[label="Producto: Sin marca Acero Pantalones Codigo: 881"]881;
+node[label="Producto: Genérica Hormigón Pescado Codigo: 877"]877;
+node[label="Producto: Hecho a mano Metal Auto Codigo: 873"]873;
+node[label="Producto: Hecho a mano Cotton Queso Codigo: 871"]871;
+node[label="Producto: Ergonómico Soft Tocino Codigo: 872"]872;
+node[label="Producto: Inteligente Granito Sombrero Codigo: 875"]875;
+node[label="Producto: Artesanal Frozen Ratón Codigo: 874"]874;
+node[label="Producto: Práctica Fresco Toallas Codigo: 876"]876;
+node[label="Producto: Inteligente Acero Queso Codigo: 879"]879;
+node[label="Producto: Gorgeous Hormigón Pantalones Codigo: 878"]878;
+node[label="Producto: Genérica Metal Auto Codigo: 880"]880;
+node[label="Producto: Refinado Hormigón Guantes Codigo: 888"]888;
+node[label="Producto: Pequeño Caucho Tocino Codigo: 884"]884;
+node[label="Producto: Inteligente Hormigón Sombrero Codigo: 882"]882;
+node[label="Producto: Sabrosa Caucho Embutidos Codigo: 883"]883;
+node[label="Producto: Licencia Frozen Toallas Codigo: 886"]886;
+node[label="Producto: Rústico Madera Tocino Codigo: 885"]885;
+node[label="Producto: Genérica Fresco Pizza Codigo: 887"]887;
+node[label="Producto: Práctica Metal Bike Codigo: 890"]890;
+node[label="Producto: Pequeño Metal Computadora Codigo: 889"]889;
+871->872;
+873->871;
+875->874;
+875->876;
+873->875;
+877->873;
+879->878;
+879->880;
+877->879;
+881->877;
+882->883;
+884->882;
+886->885;
+886->887;
+884->886;
+888->884;
+890->889;
+888->890;
+881->888;
+}
+}

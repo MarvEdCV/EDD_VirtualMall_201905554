@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NumberValueAccessor } from '@angular/forms';
 import { UsersService } from 'src/app/servicios/users.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class RegistroComponent implements OnInit {
   email: string="";
   password: string="";
   nombre: string="";
-  dpi: string=""
+  dpi: number=0;
   cuenta: string=""
 
   constructor(public UsuariosService:UsersService) { }

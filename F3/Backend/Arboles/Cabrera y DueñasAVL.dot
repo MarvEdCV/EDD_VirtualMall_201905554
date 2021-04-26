@@ -1,0 +1,48 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Cabrera y Dueñas";color=black;
+node[label="Producto: Hecho a mano Caucho Bike Codigo: 26"]26;
+node[label="Producto: Hecho a mano Cotton Guantes Codigo: 19"]19;
+node[label="Producto: Sin marca Plástico Zapatos Codigo: 16"]16;
+node[label="Producto: Ergonómico Acero Pantalones Codigo: 14"]14;
+node[label="Producto: Fantástico Metal Teclado Codigo: 13"]13;
+node[label="Producto: Fantástico Granito Ratón Codigo: 15"]15;
+node[label="Producto: Inteligente Soft Tocino Codigo: 17"]17;
+node[label="Producto: Genérica Frozen Sombrero Codigo: 18"]18;
+node[label="Producto: Práctica Soft Auto Codigo: 23"]23;
+node[label="Producto: Increíble Soft Zapatos Codigo: 21"]21;
+node[label="Producto: Inteligente Frozen Auto Codigo: 25"]25;
+node[label="Producto: Sabrosa Granito Presidente Codigo: 24"]24;
+node[label="Producto: Ergonómico Plástico Mesa Codigo: 33"]33;
+node[label="Producto: Sin marca Caucho Teclado Codigo: 29"]29;
+node[label="Producto: Gorgeous Plástico Computadora Codigo: 27"]27;
+node[label="Producto: Rústico Cotton Pollo Codigo: 28"]28;
+node[label="Producto: Genérica Madera Tuna Codigo: 31"]31;
+node[label="Producto: Gorgeous Madera Pantalones Codigo: 30"]30;
+node[label="Producto: Práctica Acero Guantes Codigo: 32"]32;
+node[label="Producto: Práctica Fresco Presidente Codigo: 35"]35;
+node[label="Producto: Ergonómico Metal Mesa Codigo: 34"]34;
+node[label="Producto: Rústico Madera Auto Codigo: 36"]36;
+14->13;
+14->15;
+16->14;
+17->18;
+16->17;
+19->16;
+23->21;
+25->24;
+23->25;
+19->23;
+26->19;
+27->28;
+29->27;
+31->30;
+31->32;
+29->31;
+33->29;
+35->34;
+35->36;
+33->35;
+26->33;
+}
+}

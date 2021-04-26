@@ -408,8 +408,28 @@ func graficarCifradoSensible(actual *Nodo, cad *strings.Builder, arr map[string]
 	}
 }
 
-func guardarArchivo(cadena string, nombre string) {
-	f, err := os.Create(nombre + "diagrama.dot")
+func (this *Arbol) Graficar() {
+	builder := strings.Builder{}
+	fmt.Fprintf(&builder, "digraph G{\nnode[shape=record]\n")
+	m := make(map[string]*Nodo)
+	graficar(this.Raiz, &builder, m, nil, 0)
+	fmt.Fprintf(&builder, "}")
+	guardarArchivo(builder.String(), "arbolNoCifrado")
+	generarImagen("arbolNoCifrado.png", "arbolNoCifrado")
+}
+
+func (this *Arbol) GraficarSensible() {
+	builder := strings.Builder{}
+	fmt.Fprintf(&builder, "digraph G{\nnode[shape=record]\n")
+	m := make(map[string]*Nodo)
+	graficarCifradoSensible(this.Raiz, &builder, m, nil, 0)
+	fmt.Fprintf(&builder, "}")
+	guardarArchivo(builder.String(), "arbolSensible")
+	generarImagen("arbolSensible.png", "arbolSensible")
+}
+
+func guardarArchivo(cadena string, name string) {
+	f, err := os.Create(name + "diagrama.dot")
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -428,31 +448,11 @@ func guardarArchivo(cadena string, nombre string) {
 	}
 }
 
-func generarImagen(nombre string) {
+func generarImagen(nombre string, name string) {
 	path, _ := exec.LookPath("dot")
-	cmd, _ := exec.Command(path, "-Tpng", "./diagrama.dot").Output()
+	cmd, _ := exec.Command(path, "-Tpng", "./"+name+"diagrama.dot").Output()
 	mode := int(0777)
 	ioutil.WriteFile(nombre, cmd, os.FileMode(mode))
-}
-
-func (this *Arbol) Graficar() {
-	builder := strings.Builder{}
-	fmt.Fprintf(&builder, "digraph G{\nnode[shape=record]\n")
-	m := make(map[string]*Nodo)
-	graficar(this.Raiz, &builder, m, nil, 0)
-	fmt.Fprintf(&builder, "}")
-	guardarArchivo(builder.String(), "GraficoNormal")
-	generarImagen("arbolNoCifrado.png")
-}
-
-func (this *Arbol) GraficarSensible() {
-	builder := strings.Builder{}
-	fmt.Fprintf(&builder, "digraph G{\nnode[shape=record]\n")
-	m := make(map[string]*Nodo)
-	graficarCifradoSensible(this.Raiz, &builder, m, nil, 0)
-	fmt.Fprintf(&builder, "}")
-	guardarArchivo(builder.String(), "GraficoSensible")
-	generarImagen("arbolSensible.png")
 }
 
 func (this *Arbol) Eliminar(key int) *Key {
@@ -473,7 +473,7 @@ func (this *Arbol) eliminarB(raiz *Nodo, key int) *Key {
 			if raiz.Keys[i+1] != nil {
 				if raiz.Keys[i+1] == nil {
 					raiz.Keys[i] = nil
-					fmt.Println(raiz.Keys[i].Usuario.Dpi, "  eliminado")
+					fmt.Println(raiz.Keys[i].Usuario.Dpi, " eliminado")
 				} else {
 					for i := 0; i < llaves-1; i++ {
 						raiz.Keys[i] = raiz.Keys[i+1]

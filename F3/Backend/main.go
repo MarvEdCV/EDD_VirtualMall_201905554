@@ -13,7 +13,6 @@ import (
 	"strconv"
 	"strings"
 
-	"./ArbolB"
 	"./Arbolbb"
 	"./List"
 	matriz "./Matriz"
@@ -29,7 +28,7 @@ var arreglotiendas []List.Tienda
 var arregloProductos []TreeAVL.Productos
 var id int
 var listaxx []TreeAVL.Arbol
-var listausuarios []ArbolB.Usuario //lista temporal para guardar los usuarios
+var listausuarios []Arbolbb.Usuario //lista temporal para guardar los usuarios
 
 type Tienda struct {
 	Nombre       string
@@ -295,6 +294,19 @@ func obtenerAVL(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "image/png")
 	io.Copy(w, tree)
 }
+func obtenerArbolb(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	name := vars["NombreArbol"]
+	fmt.Println()
+	tree, err3 := os.Open(name + ".png")
+	if err3 != nil {
+		log.Fatal(err3) // perhaps handle this nicer
+	}
+	defer tree.Close()
+	//devolvemos como respuesta la imagen
+	w.Header().Set("Content-Type", "image/png")
+	io.Copy(w, tree)
+}
 func errorResponse(w http.ResponseWriter, message string, httpStatusCode int) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(httpStatusCode)
@@ -350,6 +362,8 @@ func CargarPedidos(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(Pedidos)
 }
 
+var arbol = Arbolbb.NewArbol(5)
+
 func Registrarr(w http.ResponseWriter, r *http.Request) {
 	headerContentTtype := r.Header.Get("Content-Type")
 	if headerContentTtype != "application/json" {
@@ -358,7 +372,7 @@ func Registrarr(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var unmarshalErr *json.UnmarshalTypeError
-	var user ArbolB.Usuario
+	var user Arbolbb.Usuario
 	decoder := json.NewDecoder(r.Body)
 	decoder.DisallowUnknownFields()
 	err := decoder.Decode(&user)
@@ -391,8 +405,19 @@ func CargarUsuarios(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(UsuariosC)
 	fmt.Println(UsuariosC)
 	arbol := Arbolbb.NewArbol(5)
+	user1 := Arbolbb.Usuario{
+		Dpi:      1234567890101,
+		Nombre:   " EDD2021",
+		Correo:   " auxiliar@edd.com",
+		Password: " 1234",
+		Cuenta:   "Admin",
+	}
+	arbol.Insertar(Arbolbb.NewKey(user1))
 	for i := 0; i < len(UsuariosC.Usuarios); i++ {
 		arbol.Insertar(Arbolbb.NewKey(UsuariosC.Usuarios[i]))
+	}
+	for j := 0; j < len(listausuarios); j++ {
+		arbol.Insertar(Arbolbb.NewKey(listausuarios[j]))
 	}
 	arbol.Graficar()
 	arbol.GraficarSensible()
@@ -413,10 +438,11 @@ type TodoG struct {
 	Entrega              string
 }
 
+var vara string
+
 func CargarGrafo(w http.ResponseWriter, r *http.Request) {
 	body, _ := ioutil.ReadAll(r.Body)
 	var DatosG TodoG
-
 	json.Unmarshal(body, &DatosG)
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(DatosG)
@@ -436,7 +462,12 @@ func CargarGrafo(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	Grafo.Graficar()
-	Grafo.RutaMasCorta(DatosG.PosicionInicialRobot, DatosG.Entrega)
+
+	vara = Grafo.RutaMasCorta(DatosG.PosicionInicialRobot, DatosG.Entrega, nodos)
+	fmt.Println(vara)
+}
+func Bitacora(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, vara)
 }
 
 func main() {
@@ -579,7 +610,9 @@ func main() {
 	myrouter.HandleFunc("/cargarinventario", CargarInventarios).Methods("POST")
 	myrouter.HandleFunc("/api/Listaproductos/{NombreTienda}", getListaProductos).Methods("GET")
 	myrouter.HandleFunc("/api/ArbolAVL/{NombreTienda}", obtenerAVL).Methods("GET")
+	myrouter.HandleFunc("/api/ArbolB/{NombreArbol}", obtenerArbolb).Methods("GET")
 	myrouter.HandleFunc("/api/CarroCompras/{Producto}", AgregarCarrito).Methods("POST")
+	myrouter.HandleFunc("/api/Bitacora", Bitacora).Methods("GET")
 	myrouter.HandleFunc("/api/ObtenerCarro", ObtenerCarro).Methods("GET")
 	myrouter.HandleFunc("/api/Registrar", Registrarr).Methods("POST")
 	myrouter.HandleFunc("/cargarpedidos", CargarPedidos).Methods("POST")

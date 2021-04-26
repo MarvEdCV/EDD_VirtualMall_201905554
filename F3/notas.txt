@@ -1,0 +1,7 @@
+Administrador  ya estaa!!
+encriptacion
+
+pasar cosas a angular, diagramas etc
+Hacer arbol cifrado
+
+hacer reporte de caminos mas cortos.

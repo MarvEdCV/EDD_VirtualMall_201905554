@@ -10,6 +10,7 @@ import { ProductosComponent } from './componentes/productos/productos.component'
 import { LoginComponent } from './componentes/login/login.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { FormsModule } from '@angular/forms';
+import { AdminComponent } from './componentes/admin/admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     CarritoComponent,
     ProductosComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,10 @@
+digraph G{
+node[shape=record]
+node0xc000156a80[label="<f0>|<f1>DPI: 45 \n Nombre: Marvin2 \n Correo: edd@ingenieria.usac.edu.gt |<f2>|<f3>DPI: 29910061000 \n Nombre: Marvin \n Correo: marvintop2apex@guatemala.com |<f4>"]
+node0xc000156ba0[label="<f0>|<f1>DPI: 1 \n Nombre: Marvin2 \n Correo: edd@ingenieria.usac.edu.gt |<f2>|<f3>DPI: 2 \n Nombre: Marvin2 \n Correo: edd@ingenieria.usac.edu.gt |<f4>"]
+node0xc000156a80:f0->node0xc000156ba0
+node0xc000156c00[label="<f0>|<f1>DPI: 100 \n Nombre: USER1 \n Correo: CORREO |<f2>|<f3>DPI: 101 \n Nombre: USER2 \n Correo: CORREO |<f4>|<f5>DPI: 102 \n Nombre: USER3 \n Correo: CORREO |<f6>|<f7>DPI: 103 \n Nombre: USER4 \n Correo: CORREO |<f8>"]
+node0xc000156a80:f2->node0xc000156c00
+node0xc000156ae0[label="<f0>|<f1>DPI: 110223078923 \n Nombre: Marvin2 \n Correo: edd@ingenieria.usac.edu.gt |<f2>|<f3>DPI: 1234567890101 \n Nombre:  EDD2021 \n Correo:  auxiliar@edd.com |<f4>"]
+node0xc000156a80:f4->node0xc000156ae0
+}

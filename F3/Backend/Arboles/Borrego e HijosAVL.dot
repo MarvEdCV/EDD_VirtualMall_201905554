@@ -1,0 +1,38 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Borrego e Hijos";color=black;
+node[label="Producto: Increíble Granito Auto Codigo: 951"]951;
+node[label="Producto: Práctica Granito Auto Codigo: 946"]946;
+node[label="Producto: Increíble Acero Jabón Codigo: 945"]945;
+node[label="Producto: Inteligente Frozen Tocino Codigo: 944"]944;
+node[label="Producto: Sabrosa Acero Embutidos Codigo: 949"]949;
+node[label="Producto: Increíble Hormigón Tocino Codigo: 947"]947;
+node[label="Producto: Refinado Acero Camisa Codigo: 948"]948;
+node[label="Producto: Sabrosa Fresco Zapatos Codigo: 950"]950;
+node[label="Producto: Increíble Granito Camisa Codigo: 955"]955;
+node[label="Producto: Sin marca Soft Teclado Codigo: 953"]953;
+node[label="Producto: Elegante Madera Tocino Codigo: 952"]952;
+node[label="Producto: Licencia Plástico Ratón Codigo: 954"]954;
+node[label="Producto: Refinado Soft Teclado Codigo: 959"]959;
+node[label="Producto: Increíble Plástico Tuna Codigo: 957"]957;
+node[label="Producto: Sabrosa Caucho Pelota Codigo: 956"]956;
+node[label="Producto: Ergonómico Granito Teclado Codigo: 958"]958;
+node[label="Producto: Licencia Cotton Teclado Codigo: 960"]960;
+945->944;
+946->945;
+947->948;
+949->947;
+949->950;
+946->949;
+951->946;
+953->952;
+953->954;
+955->953;
+957->956;
+957->958;
+959->957;
+959->960;
+955->959;
+951->955;
+}
+}

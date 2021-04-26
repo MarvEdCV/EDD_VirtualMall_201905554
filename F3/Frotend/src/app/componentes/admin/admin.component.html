@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/Login">TIENDA EN LINEA</a>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+          <a class="nav-link" href="/Tiendas">Catalogo de tiendas<span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Carrito">Carrito de compras</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Calendario">Calendario de pedidos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/CargaInv">Cargar inventarios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/CargaPedidos">Cargar pedidos</a>
+          </li>
+      </ul>
+    </div>
+  </nav>
+  <h2>Lista de Reportes</h2>
+  <table class="table table-hover">
+      <thead class=" thead thead-dark">
+        <tr>
+          <th scope="col">Nombre Reporte</th>
+          <th scope="col">Ver Reporte</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Arbol B sin cifrar</td>
+          <td>
+            <button type="button" class="btn btn-danger"><a href="http://localhost:3000/api/ArbolB/arbolNoCifrado" target="_blank">VER</a></button>
+          </td>
+        </tr>
+        <tr>
+            <td>Arbol B Sensible</td>
+            <td>
+              <button type="button" class="btn btn-danger"><a href="http://localhost:3000/api/ArbolB/arbolSensible" target="_blank">VER</a></button>
+            </td>
+          </tr>
+          <tr>
+            <td>Arbol B Cifrado</td>
+            <td>
+              <button type="button" class="btn btn-danger"><a href="http://localhost:3000/api/ArbolB/arbolSensible" target="_blank">VER</a></button>
+            </td>
+          </tr>
+          <tr>
+            <td>Grafo de Pedido</td>
+            <td>
+              <button type="button" class="btn btn-danger"><a href="http://localhost:3000/api/ArbolB/Grafo" target="_blank">VER</a></button>
+            </td>
+          </tr>
+          <tr>
+          <td>Bitacora de camino mas corto</td>
+            <td>
+              <button type="button" class="btn btn-danger"><a href="http://localhost:3000/api/Bitacora" target="_blank">VER</a></button>
+            </td>
+          </tr>
+
+      </tbody>
+    </table>
