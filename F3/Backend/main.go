@@ -18,6 +18,8 @@ import (
 	"./List"
 	matriz "./Matriz"
 	"./TreeAVL"
+
+	"./grafo"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
@@ -397,6 +399,46 @@ func CargarUsuarios(w http.ResponseWriter, r *http.Request) {
 
 }
 
+type Caminos struct {
+	Nombre    string
+	Distancia int
+}
+type DepaPedidos struct {
+	Nombre  string
+	Enlaces []Caminos
+}
+type TodoG struct {
+	Nodos                []DepaPedidos
+	PosicionInicialRobot string
+	Entrega              string
+}
+
+func CargarGrafo(w http.ResponseWriter, r *http.Request) {
+	body, _ := ioutil.ReadAll(r.Body)
+	var DatosG TodoG
+
+	json.Unmarshal(body, &DatosG)
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(DatosG)
+	fmt.Println(DatosG.Nodos)
+	Grafo := grafo.NewGrafo()
+	var nodos int
+
+	nodos = len(DatosG.Nodos)
+
+	for i := 0; i < nodos; i++ {
+		Grafo.InsertarNuevo(DatosG.Nodos[i].Nombre)
+	}
+	for x := 0; x < nodos; x++ {
+		enlaces := len(DatosG.Nodos[x].Enlaces)
+		for j := 0; j < enlaces; j++ {
+			Grafo.AgregarAdyasente(DatosG.Nodos[x].Nombre, DatosG.Nodos[x].Enlaces[j].Nombre, DatosG.Nodos[x].Enlaces[j].Distancia)
+		}
+	}
+	Grafo.Graficar()
+	Grafo.RutaMasCorta(DatosG.PosicionInicialRobot, DatosG.Entrega)
+}
+
 func main() {
 	/*
 		user1 := Arbolbb.Usuario{
@@ -512,6 +554,21 @@ func main() {
 
 		arbol.GraficarSensible()
 	*/
+	//Prueba Grafo
+	/*
+		grafo := grafo.NewGrafo()
+		grafo.InsertarNuevo("Despacho")
+		grafo.InsertarNuevo("Aranceles")
+		grafo.InsertarNuevo("Textiles")
+		grafo.InsertarNuevo("Reparaciones")
+		grafo.AgregarAdyasente("Despacho", "Aranceles")
+		grafo.AgregarAdyasente("Despacho", "Reparaciones")
+		grafo.AgregarAdyasente("Despacho", "Textiles")
+		grafo.AgregarAdyasente("Aranceles", "Textiles")
+		grafo.AgregarAdyasente("Textiles", "Reparaciones")
+
+		grafo.Graficar()*/
+
 	myrouter := mux.NewRouter().StrictSlash(true)
 	myrouter.HandleFunc("/getArreglo", getArreglo).Methods("GET")
 	myrouter.HandleFunc("/cargartienda", metodopost).Methods("POST")
@@ -527,6 +584,7 @@ func main() {
 	myrouter.HandleFunc("/api/Registrar", Registrarr).Methods("POST")
 	myrouter.HandleFunc("/cargarpedidos", CargarPedidos).Methods("POST")
 	myrouter.HandleFunc("/cargarUsuarios", CargarUsuarios).Methods("POST")
+	myrouter.HandleFunc("/cargarGrafo", CargarGrafo).Methods("POST")
 	log.Fatal(http.ListenAndServe(":3000", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(myrouter)))
 
 }

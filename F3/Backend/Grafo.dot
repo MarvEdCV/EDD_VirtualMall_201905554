@@ -1,0 +1,21 @@
+graph G {
+rankdir = LR; 
+subgraph cluster_1 { 
+node [color=seagreen1, style=filled, shape=egg]; 
+nDespacho[label="Despacho "] 
+nAranceles[label="Aranceles "] 
+nTextiles[label="Textiles "] 
+nReparaciones[label="Reparaciones "] 
+nDespacho -- nAranceles[label=5]
+nDespacho -- nReparaciones[label=6]
+nDespacho -- nTextiles[label=100]
+nAranceles -- nDespacho[label=5]
+nAranceles -- nTextiles[label=10]
+nTextiles -- nDespacho[label=100]
+nTextiles -- nAranceles[label=10]
+nTextiles -- nReparaciones[label=7]
+nReparaciones -- nDespacho[label=6]
+nReparaciones -- nTextiles[label=7]
+label = "Grafo de Pedido";
+}
+}
