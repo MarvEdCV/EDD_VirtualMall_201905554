@@ -660,6 +660,7 @@ func encriptarFernetCorreo(correo string) string {
 		panic(err)
 	}
 	msg := fernet.VerifyAndDecrypt(tok, 60*time.Second, k)
+	fmt.Println("\nDescencriptado--->")
 	fmt.Println(string(msg), string(tok))
 	return string(tok)
 }
@@ -671,6 +672,7 @@ func encriptarFernetDpi(Dpi int) string {
 		panic(err)
 	}
 	msg := fernet.VerifyAndDecrypt(tok, 60*time.Second, k)
+	fmt.Println("\nDescencriptado--->")
 	fmt.Println(string(msg), string(tok))
 	return string(tok)
 }
