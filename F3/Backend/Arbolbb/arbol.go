@@ -407,6 +407,72 @@ func graficarCifradoSensible(actual *Nodo, cad *strings.Builder, arr map[string]
 		fmt.Fprintf(cad, "node%p:f%d->node%p\n", &(*padre), pos, &(*actual)) // cada %s o %d es un indicador de que elemnto va ahi %s para strings, %d para numeros, pensemos que estamos sustituyendos esos simbolos por los valores que deseamos
 	}
 }
+func graficarCifrado(actual *Nodo, cad *strings.Builder, arr map[string]*Nodo, padre *Nodo, pos int) {
+	asciiValue1 := 92
+	asciiValue2 := 110
+	character := rune(asciiValue1)
+	character2 := rune(asciiValue2)
+	separador := string(character) + string(character2)
+
+	if actual == nil {
+		return
+	}
+	j := 0
+	contiene := arr[fmt.Sprint(&(*actual))]
+	if contiene != nil {
+		arr[fmt.Sprint(&(*actual))] = nil
+		return
+	} else {
+		arr[fmt.Sprint(&(*actual))] = actual
+	}
+	fmt.Fprintf(cad, "node%p[label=\"", &(*actual))
+	enlace := true
+	for i := 0; i < actual.Max; i++ {
+		if actual.Keys[i] == nil {
+			return
+		} else {
+			if enlace {
+				if i != actual.Max-1 {
+					fmt.Fprintf(cad, "<f%d>|", j)
+				} else {
+					fmt.Fprintf(cad, "<f%d>", j)
+					break
+				}
+				enlace = false
+				i--
+				j++
+			} else {
+				fmt.Fprintf(cad, "<f%d>DPI: %s %s Correo: %s %s Nombre: %s |", j, encriptarFernetDpi(actual.Keys[i].Usuario.Dpi), separador, encriptarFernetCorreo(actual.Keys[i].Usuario.Correo), separador, encriptarFernetCorreo(actual.Keys[i].Usuario.Nombre))
+				j++
+
+				enlace = true
+				if i < actual.Max-1 {
+					if actual.Keys[i+1] == nil {
+						fmt.Fprintf(cad, "<f%d>", j)
+						j++
+						break
+					}
+				}
+			}
+		}
+	}
+	fmt.Fprintf(cad, "\"]\n")
+	ji := 0
+	for i := 0; i < actual.Max; i++ {
+		if actual.Keys[i] == nil {
+			break
+		}
+		graficarCifrado(actual.Keys[i].Izquierdo, cad, arr, actual, ji)
+		ji++
+		ji++
+		graficarCifrado(actual.Keys[i].Derecho, cad, arr, actual, ji)
+		ji++
+		ji--
+	}
+	if padre != nil {
+		fmt.Fprintf(cad, "node%p:f%d->node%p\n", &(*padre), pos, &(*actual)) // cada %s o %d es un indicador de que elemnto va ahi %s para strings, %d para numeros, pensemos que estamos sustituyendos esos simbolos por los valores que deseamos
+	}
+}
 
 func (this *Arbol) Graficar() {
 	builder := strings.Builder{}
@@ -426,6 +492,15 @@ func (this *Arbol) GraficarSensible() {
 	fmt.Fprintf(&builder, "}")
 	guardarArchivo(builder.String(), "arbolSensible")
 	generarImagen("arbolSensible.png", "arbolSensible")
+}
+func (this *Arbol) GraficarCifrado() {
+	builder := strings.Builder{}
+	fmt.Fprintf(&builder, "digraph G{\nnode[shape=record]\n")
+	m := make(map[string]*Nodo)
+	graficarCifrado(this.Raiz, &builder, m, nil, 0)
+	fmt.Fprintf(&builder, "}")
+	guardarArchivo(builder.String(), "arbolCifrado")
+	generarImagen("arbolCifrado.png", "arbolCifrado")
 }
 
 func guardarArchivo(cadena string, name string) {

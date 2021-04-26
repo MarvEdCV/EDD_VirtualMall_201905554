@@ -419,8 +419,10 @@ func CargarUsuarios(w http.ResponseWriter, r *http.Request) {
 	for j := 0; j < len(listausuarios); j++ {
 		arbol.Insertar(Arbolbb.NewKey(listausuarios[j]))
 	}
+	//arbol.Eliminar(2)
 	arbol.Graficar()
 	arbol.GraficarSensible()
+	arbol.GraficarCifrado()
 
 }
 

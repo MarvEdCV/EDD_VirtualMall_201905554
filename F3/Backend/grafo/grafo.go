@@ -165,6 +165,7 @@ func (g Grafo) RutaMasCorta(Inicio string, Fin string, tamanio int) string {
 	}
 	return retornarcamino
 }
+
 func (g Grafo) BuscarNodoyaUtilizado(Nodo string) bool {
 	for i := 0; i < len(listayautilizados); i++ {
 		if Nodo == listayautilizados[i] {
