@@ -17,6 +17,7 @@ import (
 	"./List"
 	matriz "./Matriz"
 	"./TreeAVL"
+	"./blockchain"
 	"./grafo"
 	"./tablahash"
 	"github.com/gorilla/handlers"
@@ -535,6 +536,13 @@ func main() {
 	//ht.Insertar(int(stringtoascii("Coment6")), "Coment8", 67890)
 	ht.GetAtributos()
 	ht.Print()*/
+
+	chain := blockchain.InitBlockChain()
+	chain.AgregarBloque("Primer bloque despues del bloqueinicial")
+	chain.AgregarBloque("Segundo bloque despues del bloqueinicial")
+	chain.AgregarBloque("Tercer bloque despues del bloqueinicial")
+
+	chain.Imprimir(chain)
 
 	myrouter := mux.NewRouter().StrictSlash(true)
 	myrouter.HandleFunc("/getArreglo", getArreglo).Methods("GET")
