@@ -1,0 +1,20 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Aragón Riojas Hermanos";color=black;
+node[label="Producto: Refinado Madera Pizza Codigo: 194"]194;
+node[label="Producto: Genérica Madera Embutidos Codigo: 192"]192;
+node[label="Producto: Refinado Granito Pollo Codigo: 191"]191;
+node[label="Producto: Práctica Cotton Sombrero Codigo: 190"]190;
+node[label="Producto: Gorgeous Caucho Pantalones Codigo: 193"]193;
+node[label="Producto: Increíble Hormigón Bike Codigo: 196"]196;
+node[label="Producto: Licencia Metal Tocino Codigo: 195"]195;
+node[label="Producto: Artesanal Acero Teclado Codigo: 197"]197;
+191->190;
+192->191;
+192->193;
+194->192;
+196->195;
+196->197;
+194->196;
+}
+}

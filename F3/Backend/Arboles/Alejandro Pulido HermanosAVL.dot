@@ -1,0 +1,14 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Alejandro Pulido Hermanos";color=black;
+node[label="Producto: Increíble Soft Bike Codigo: 58"]58;
+node[label="Producto: Inteligente Frozen Pelota Codigo: 57"]57;
+node[label="Producto: Hecho a mano Plástico Toallas Codigo: 60"]60;
+node[label="Producto: Artesanal Acero Pescado Codigo: 59"]59;
+node[label="Producto: Genérica Fresco Computadora Codigo: 61"]61;
+58->57;
+60->59;
+60->61;
+58->60;
+}
+}

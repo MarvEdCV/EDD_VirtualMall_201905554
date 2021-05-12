@@ -1,0 +1,32 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Arias, Lucio y Martínez Asociados";color=black;
+node[label="Producto: Gorgeous Plástico Pescado Codigo: 969"]969;
+node[label="Producto: Ergonómico Granito Toallas Codigo: 962"]962;
+node[label="Producto: Artesanal Cotton Jabón Codigo: 960"]960;
+node[label="Producto: Gorgeous Metal Tuna Codigo: 959"]959;
+node[label="Producto: Licencia Granito Queso Codigo: 961"]961;
+node[label="Producto: Inteligente Plástico Pelota Codigo: 967"]967;
+node[label="Producto: Refinado Soft Pelota Codigo: 963"]963;
+node[label="Producto: Licencia Plástico Pollo Codigo: 968"]968;
+node[label="Producto: Elegante Madera Camisa Codigo: 974"]974;
+node[label="Producto: Sabrosa Acero Jabón Codigo: 972"]972;
+node[label="Producto: Hecho a mano Cotton Ensalada Codigo: 970"]970;
+node[label="Producto: Rústico Granito Pantalones Codigo: 973"]973;
+node[label="Producto: Sabrosa Metal Pescado Codigo: 976"]976;
+node[label="Producto: Ergonómico Plástico Bike Codigo: 975"]975;
+960->959;
+960->961;
+962->960;
+967->963;
+967->968;
+962->967;
+969->962;
+972->970;
+972->973;
+974->972;
+976->975;
+974->976;
+969->974;
+}
+}

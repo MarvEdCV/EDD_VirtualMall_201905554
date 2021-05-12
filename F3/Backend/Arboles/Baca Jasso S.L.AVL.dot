@@ -1,0 +1,28 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Baca Jasso S.L.";color=black;
+node[label="Producto: Sabrosa Madera Camisa Codigo: 839"]839;
+node[label="Producto: Elegante Madera Bike Codigo: 835"]835;
+node[label="Producto: Fantástico Frozen Camisa Codigo: 832"]832;
+node[label="Producto: Ergonómico Caucho Camisa Codigo: 829"]829;
+node[label="Producto: Increíble Cotton Tocino Codigo: 833"]833;
+node[label="Producto: Hecho a mano Metal Ratón Codigo: 837"]837;
+node[label="Producto: Sin marca Frozen Guantes Codigo: 838"]838;
+node[label="Producto: Increíble Plástico Teclado Codigo: 843"]843;
+node[label="Producto: Gorgeous Hormigón Zapatos Codigo: 842"]842;
+node[label="Producto: Refinado Acero Presidente Codigo: 845"]845;
+node[label="Producto: Genérica Plástico Queso Codigo: 844"]844;
+node[label="Producto: Licencia Metal Ratón Codigo: 846"]846;
+832->829;
+832->833;
+835->832;
+837->838;
+835->837;
+839->835;
+843->842;
+845->844;
+845->846;
+843->845;
+839->843;
+}
+}

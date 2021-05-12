@@ -1,0 +1,16 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Bétancourt, Escamilla y Zapata Asociados";color=black;
+node[label="Producto: Rústico Hormigón Pollo Codigo: 134"]134;
+node[label="Producto: Pequeño Cotton Pantalones Codigo: 132"]132;
+node[label="Producto: Increíble Metal Auto Codigo: 133"]133;
+node[label="Producto: Sin marca Granito Presidente Codigo: 136"]136;
+node[label="Producto: Increíble Madera Pollo Codigo: 135"]135;
+node[label="Producto: Rústico Caucho Sombrero Codigo: 137"]137;
+132->133;
+134->132;
+136->135;
+136->137;
+134->136;
+}
+}

@@ -1,0 +1,36 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Aranda, Aparicio y Navarro Asociados";color=black;
+node[label="Producto: Sin marca Soft Toallas Codigo: 245"]245;
+node[label="Producto: Fantástico Granito Auto Codigo: 239"]239;
+node[label="Producto: Refinado Fresco Ensalada Codigo: 237"]237;
+node[label="Producto: Fantástico Madera Bike Codigo: 235"]235;
+node[label="Producto: Práctica Granito Camisa Codigo: 234"]234;
+node[label="Producto: Gorgeous Madera Toallas Codigo: 238"]238;
+node[label="Producto: Inteligente Cotton Tocino Codigo: 243"]243;
+node[label="Producto: Rústico Caucho Pizza Codigo: 240"]240;
+node[label="Producto: Artesanal Fresco Zapatos Codigo: 242"]242;
+node[label="Producto: Inteligente Plástico Embutidos Codigo: 244"]244;
+node[label="Producto: Fantástico Acero Mesa Codigo: 248"]248;
+node[label="Producto: Pequeño Caucho Ratón Codigo: 247"]247;
+node[label="Producto: Increíble Acero Toallas Codigo: 246"]246;
+node[label="Producto: Pequeño Frozen Ensalada Codigo: 250"]250;
+node[label="Producto: Fantástico Frozen Mesa Codigo: 249"]249;
+node[label="Producto: Refinado Frozen Pizza Codigo: 251"]251;
+235->234;
+237->235;
+237->238;
+239->237;
+240->242;
+243->240;
+243->244;
+239->243;
+245->239;
+247->246;
+248->247;
+250->249;
+250->251;
+248->250;
+245->248;
+}
+}

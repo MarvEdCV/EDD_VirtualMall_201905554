@@ -1,0 +1,16 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Barrios Almanza e Hijos";color=black;
+node[label="Producto: Artesanal Acero Queso Codigo: 838"]838;
+node[label="Producto: Artesanal Madera Computadora Codigo: 836"]836;
+node[label="Producto: Hecho a mano Madera Embutidos Codigo: 837"]837;
+node[label="Producto: Gorgeous Madera Jabón Codigo: 840"]840;
+node[label="Producto: Artesanal Acero Jabón Codigo: 839"]839;
+node[label="Producto: Increíble Hormigón Jabón Codigo: 841"]841;
+836->837;
+838->836;
+840->839;
+840->841;
+838->840;
+}
+}

@@ -1,0 +1,16 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Bueno Delarosa S.L.";color=black;
+node[label="Producto: Sabrosa Fresco Queso Codigo: 259"]259;
+node[label="Producto: Artesanal Soft Ratón Codigo: 256"]256;
+node[label="Producto: Inteligente Cotton Presidente Codigo: 255"]255;
+node[label="Producto: Práctica Cotton Computadora Codigo: 261"]261;
+node[label="Producto: Sabrosa Hormigón Guantes Codigo: 260"]260;
+node[label="Producto: Ergonómico Cotton Ratón Codigo: 262"]262;
+256->255;
+259->256;
+261->260;
+261->262;
+259->261;
+}
+}

@@ -1,0 +1,38 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Bernal, Pelayo y Delafuente Asociados";color=black;
+node[label="Producto: Increíble Metal Ratón Codigo: 246"]246;
+node[label="Producto: Licencia Soft Toallas Codigo: 242"]242;
+node[label="Producto: Sin marca Acero Sombrero Codigo: 240"]240;
+node[label="Producto: Licencia Caucho Jabón Codigo: 239"]239;
+node[label="Producto: Inteligente Soft Mesa Codigo: 241"]241;
+node[label="Producto: Práctica Caucho Bike Codigo: 244"]244;
+node[label="Producto: Refinado Cotton Pelota Codigo: 243"]243;
+node[label="Producto: Pequeño Granito Embutidos Codigo: 245"]245;
+node[label="Producto: Licencia Granito Presidente Codigo: 252"]252;
+node[label="Producto: Rústico Granito Tuna Codigo: 249"]249;
+node[label="Producto: Inteligente Frozen Pizza Codigo: 248"]248;
+node[label="Producto: Hecho a mano Caucho Ensalada Codigo: 247"]247;
+node[label="Producto: Práctica Madera Ensalada Codigo: 251"]251;
+node[label="Producto: Increíble Hormigón Teclado Codigo: 250"]250;
+node[label="Producto: Pequeño Caucho Ensalada Codigo: 255"]255;
+node[label="Producto: Licencia Metal Mesa Codigo: 254"]254;
+node[label="Producto: Fantástico Cotton Mesa Codigo: 256"]256;
+240->239;
+240->241;
+242->240;
+244->243;
+244->245;
+242->244;
+246->242;
+248->247;
+249->248;
+251->250;
+249->251;
+252->249;
+255->254;
+255->256;
+252->255;
+246->252;
+}
+}

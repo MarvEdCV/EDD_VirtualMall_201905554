@@ -17,8 +17,8 @@ import (
 	"./List"
 	matriz "./Matriz"
 	"./TreeAVL"
-
 	"./grafo"
+	"./tablahash"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
@@ -419,7 +419,6 @@ func CargarUsuarios(w http.ResponseWriter, r *http.Request) {
 	for j := 0; j < len(listausuarios); j++ {
 		arbol.Insertar(Arbolbb.NewKey(listausuarios[j]))
 	}
-	//arbol.Eliminar(2)
 	arbol.Graficar()
 	arbol.GraficarSensible()
 	arbol.GraficarCifrado()
@@ -471,136 +470,71 @@ func CargarGrafo(w http.ResponseWriter, r *http.Request) {
 func Bitacora(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, vara)
 }
+func stringtoascii(entrada string) int32 {
+	cod := []rune(entrada)
+	var temp int32
+	temp = 0
+	for i := 0; i < len(cod); i++ {
+		temp = cod[i] + temp
+	}
+	return temp
+}
 
+type comentarios struct {
+	DPI        int
+	Comentario string
+}
+
+var ComentariosTiendas []comentarios
+
+func Comentar(w http.ResponseWriter, r *http.Request) {
+	headerContentTtype := r.Header.Get("Content-Type")
+	if headerContentTtype != "application/json" {
+		errorResponse(w, "Content Type is not application/json", http.StatusUnsupportedMediaType)
+		return
+	}
+
+	var unmarshalErr *json.UnmarshalTypeError
+	var message comentarios
+	decoder := json.NewDecoder(r.Body)
+	decoder.DisallowUnknownFields()
+	err := decoder.Decode(&message)
+	if err != nil {
+		if errors.As(err, &unmarshalErr) {
+			errorResponse(w, "Bad Request. Wrong Type provided for field "+unmarshalErr.Field, http.StatusBadRequest)
+		} else {
+			errorResponse(w, "Bad Request "+err.Error(), http.StatusBadRequest)
+		}
+		return
+	}
+
+	errorResponse(w, "ingresado", http.StatusOK)
+	ComentariosTiendas = append(ComentariosTiendas, message)
+	fmt.Println("lista de comentarios")
+	fmt.Println(ComentariosTiendas)
+
+	ht := tablahash.NewHashTable(17)
+	for i := 0; i < len(ComentariosTiendas); i++ {
+		ht.Insertar(ComentariosTiendas[i].DPI, ComentariosTiendas[i].Comentario, ComentariosTiendas[i].DPI)
+	}
+	ht.GetAtributos()
+	ht.Print()
+	return
+
+}
 func main() {
-	/*
-		user1 := Arbolbb.Usuario{
-			Dpi:      55,
-			Nombre:   "Omar",
-			Correo:   "ss",
-			Password: "s",
-			Cuenta:   "sswww",
-		}
 
-		user2 := Arbolbb.Usuario{
-			Dpi:      455,
-			Nombre:   "Andrea",
-			Correo:   "ss",
-			Password: "s",
-			Cuenta:   "sswww",
-		}
-
-		user3 := Arbolbb.Usuario{
-			Dpi:      5,
-			Nombre:   "Daniel",
-			Correo:   "ss",
-			Password: "s",
-			Cuenta:   "sswww",
-		}
-		user4 := Arbolbb.Usuario{
-			Dpi:      4,
-			Nombre:   "Renato",
-			Correo:   "ss",
-			Password: "s",
-			Cuenta:   "sswww",
-		}
-		user5 := Arbolbb.Usuario{
-			Dpi:      51,
-			Nombre:   "Luis",
-			Correo:   "ss",
-			Password: "s",
-			Cuenta:   "sswww",
-		}
-		user6 := Arbolbb.Usuario{
-			Dpi:      6,
-			Nombre:   "Joaquin",
-			Correo:   "ss",
-			Password: "s",
-			Cuenta:   "sswww",
-		}
-		user7 := Arbolbb.Usuario{
-			Dpi:      7,
-			Nombre:   "Rebeca",
-			Correo:   "ss",
-			Password: "s",
-			Cuenta:   "sswww",
-		}
-		user8 := Arbolbb.Usuario{
-			Dpi:      8,
-			Nombre:   "Ana",
-			Correo:   "ss",
-			Password: "s",
-			Cuenta:   "sswww",
-		}
-		user9 := Arbolbb.Usuario{
-			Dpi:      9,
-			Nombre:   "Hpla",
-			Correo:   "ss",
-			Password: "s",
-			Cuenta:   "sswww",
-		}
-		user10 := Arbolbb.Usuario{
-			Dpi:      10,
-			Nombre:   "Hpla",
-			Correo:   "ss",
-			Password: "s",
-			Cuenta:   "sswww",
-		}
-		user11 := Arbolbb.Usuario{
-			Dpi:      1,
-			Nombre:   "Pedro",
-			Correo:   "ss",
-			Password: "s",
-			Cuenta:   "sswww",
-		}
-		user12 := Arbolbb.Usuario{
-			Dpi:      777,
-			Nombre:   "Lucia",
-			Correo:   "ss",
-			Password: "s",
-			Cuenta:   "sswww",
-		}
-		user13 := Arbolbb.Usuario{
-			Dpi:      1,
-			Nombre:   "Juan",
-			Correo:   "ss",
-			Password: "s",
-			Cuenta:   "sswww",
-		}
-
-		arbol := Arbolbb.NewArbol(5)
-
-		arbol.Insertar(Arbolbb.NewKey(user1))
-		arbol.Insertar(Arbolbb.NewKey(user2))
-		arbol.Insertar(Arbolbb.NewKey(user3))
-		arbol.Insertar(Arbolbb.NewKey(user4))
-		arbol.Insertar(Arbolbb.NewKey(user5))
-		arbol.Insertar(Arbolbb.NewKey(user6))
-		arbol.Insertar(Arbolbb.NewKey(user7))
-		arbol.Insertar(Arbolbb.NewKey(user8))
-		arbol.Insertar(Arbolbb.NewKey(user9))
-		arbol.Insertar(Arbolbb.NewKey(user10))
-		arbol.Insertar(Arbolbb.NewKey(user11))
-		arbol.Insertar(Arbolbb.NewKey(user12))
-		arbol.Insertar(Arbolbb.NewKey(user13))
-		arbol.Graficar()
-
-		arbol.GraficarSensible()
-	*/
-	//Prueba Grafo
-	/*
-		grafo := grafo.NewGrafo()
-		grafo.InsertarNuevo("Despacho")
-		grafo.InsertarNuevo("Aranceles")
-		grafo.InsertarNuevo("Textiles")
-		grafo.InsertarNuevo("Reparaciones")
-		grafo.AgregarAdyasente("Despacho", "Aranceles")
-		grafo.AgregarAdyasente("Despacho", "Reparaciones")
-		grafo.AgregarAdyasente("Despacho", "Textiles")
-		grafo.AgregarAdyasente("Aranceles", "Textiles")
-		grafo.AgregarAdyasente("Textiles", "Reparaciones")
-
-		grafo.Graficar()*/
+	/*ht := tablahash.NewHashTable(7)
+	ht.Insertar(int(stringtoascii("Coment1")), "Coment1", 12345)
+	ht.Insertar(int(stringtoascii("Coment2")), "Coment2", 23456)
+	ht.Insertar(int(stringtoascii("Coment3")), "Coment3", 34567)
+	ht.Insertar(int(stringtoascii("Coment4")), "Coment4", 45678)
+	ht.Insertar(int(stringtoascii("Coment5")), "Coment5", 56789)
+	//ht.Insertar(int(stringtoascii("Coment6")), "Coment6", 67890)
+	//ht.Insertar(int(stringtoascii("Coment6")), "Coment7", 67890)
+	//ht.Insertar(int(stringtoascii("Coment6")), "Coment8", 67890)
+	ht.GetAtributos()
+	ht.Print()*/
 
 	myrouter := mux.NewRouter().StrictSlash(true)
 	myrouter.HandleFunc("/getArreglo", getArreglo).Methods("GET")
@@ -617,6 +551,7 @@ func main() {
 	myrouter.HandleFunc("/api/Bitacora", Bitacora).Methods("GET")
 	myrouter.HandleFunc("/api/ObtenerCarro", ObtenerCarro).Methods("GET")
 	myrouter.HandleFunc("/api/Registrar", Registrarr).Methods("POST")
+	myrouter.HandleFunc("/api/Comentar", Comentar).Methods("POST")
 	myrouter.HandleFunc("/cargarpedidos", CargarPedidos).Methods("POST")
 	myrouter.HandleFunc("/cargarUsuarios", CargarUsuarios).Methods("POST")
 	myrouter.HandleFunc("/cargarGrafo", CargarGrafo).Methods("POST")

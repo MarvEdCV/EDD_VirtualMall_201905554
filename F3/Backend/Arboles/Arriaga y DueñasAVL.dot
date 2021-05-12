@@ -1,0 +1,20 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Arriaga y Dueñas";color=black;
+node[label="Producto: Gorgeous Plástico Bike Codigo: 249"]249;
+node[label="Producto: Fantástico Hormigón Auto Codigo: 247"]247;
+node[label="Producto: Sin marca Fresco Tocino Codigo: 243"]243;
+node[label="Producto: Refinado Madera Ensalada Codigo: 246"]246;
+node[label="Producto: Artesanal Fresco Guantes Codigo: 248"]248;
+node[label="Producto: Genérica Madera Auto Codigo: 252"]252;
+node[label="Producto: Increíble Soft Bike Codigo: 251"]251;
+node[label="Producto: Elegante Acero Guantes Codigo: 253"]253;
+243->246;
+247->243;
+247->248;
+249->247;
+252->251;
+252->253;
+249->252;
+}
+}

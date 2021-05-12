@@ -33,6 +33,8 @@
         <th scope="col">Imagen</th>
         <th scope="col">Cantidad</th>
         <th scope="col">Carrito</th>
+        <th scope="col">Comentario</th>
+        <th scope="col">Send</th>
       </tr>
     </thead>
     <tbody>
@@ -46,7 +48,29 @@
         </td>
         <td><textarea class="ml-4 mt-3" #Cantidad style="width: 100px; height: 30px;"></textarea></td>
         <td><button  type="submit" class="btn btn-danger" (click)="agregarProducto(listax, Cantidad.value)" value={{listax}}>Agregar</button></td>
+        <td><textarea class="ml-4 mt-3" #Comentario style="width: 100px; height: 30px;"></textarea></td>
+        <td><button  type="submit" class="btn btn-danger" >Comentar</button></td>
       </tr>
     </tbody>
   </table>
+  <form class="custom-form" method="post">
+    <h1 class="texto">COMENTAR</h1>
+    <input
+    type="number"
+    [(ngModel)]="id"
+    name="id"
+    placeholder="ID"
+    required="required"
+    />
+    <input
+      type="Comentario"
+      [(ngModel)]="Comentario"
+      name="Comentario"
+      placeholder="Texto"
+      required="required"
+    />
+    
+    
+    <button type="submit" (click)="Sendcoment()">COMENTAR</button>
+  </form>
   

@@ -1,0 +1,18 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Arredondo Duarte S.A.";color=black;
+node[label="Producto: Inteligente Plástico Auto Codigo: 306"]306;
+node[label="Producto: Ergonómico Acero Toallas Codigo: 303"]303;
+node[label="Producto: Increíble Hormigón Tocino Codigo: 302"]302;
+node[label="Producto: Hecho a mano Hormigón Teclado Codigo: 305"]305;
+node[label="Producto: Licencia Acero Tuna Codigo: 309"]309;
+node[label="Producto: Práctica Frozen Pizza Codigo: 308"]308;
+node[label="Producto: Licencia Fresco Tocino Codigo: 310"]310;
+303->302;
+303->305;
+306->303;
+309->308;
+309->310;
+306->309;
+}
+}

@@ -1,0 +1,38 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Aguilera, Oquendo y Ferrer Asociados";color=black;
+node[label="Producto: Ergonómico Plástico Ratón Codigo: 339"]339;
+node[label="Producto: Rústico Fresco Mesa Codigo: 335"]335;
+node[label="Producto: Artesanal Cotton Ratón Codigo: 334"]334;
+node[label="Producto: Sin marca Caucho Pelota Codigo: 333"]333;
+node[label="Producto: Rústico Soft Queso Codigo: 337"]337;
+node[label="Producto: Licencia Fresco Ratón Codigo: 336"]336;
+node[label="Producto: Licencia Granito Auto Codigo: 338"]338;
+node[label="Producto: Increíble Acero Toallas Codigo: 345"]345;
+node[label="Producto: Refinado Caucho Ensalada Codigo: 343"]343;
+node[label="Producto: Hecho a mano Soft Pantalones Codigo: 341"]341;
+node[label="Producto: Hecho a mano Cotton Pescado Codigo: 342"]342;
+node[label="Producto: Hecho a mano Soft Pelota Codigo: 344"]344;
+node[label="Producto: Refinado Metal Jabón Codigo: 347"]347;
+node[label="Producto: Ergonómico Hormigón Jabón Codigo: 346"]346;
+node[label="Producto: Gorgeous Soft Tuna Codigo: 349"]349;
+node[label="Producto: Sin marca Madera Guantes Codigo: 348"]348;
+node[label="Producto: Fantástico Fresco Embutidos Codigo: 350"]350;
+334->333;
+335->334;
+337->336;
+337->338;
+335->337;
+339->335;
+341->342;
+343->341;
+343->344;
+345->343;
+347->346;
+349->348;
+349->350;
+347->349;
+345->347;
+339->345;
+}
+}

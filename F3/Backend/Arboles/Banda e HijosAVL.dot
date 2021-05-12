@@ -1,0 +1,36 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Banda e Hijos";color=black;
+node[label="Producto: Inteligente Madera Toallas Codigo: 224"]224;
+node[label="Producto: Gorgeous Madera Sombrero Codigo: 220"]220;
+node[label="Producto: Hecho a mano Caucho Teclado Codigo: 217"]217;
+node[label="Producto: Sin marca Frozen Embutidos Codigo: 216"]216;
+node[label="Producto: Pequeño Frozen Pantalones Codigo: 218"]218;
+node[label="Producto: Artesanal Acero Camisa Codigo: 219"]219;
+node[label="Producto: Elegante Soft Teclado Codigo: 222"]222;
+node[label="Producto: Artesanal Frozen Zapatos Codigo: 221"]221;
+node[label="Producto: Gorgeous Cotton Zapatos Codigo: 223"]223;
+node[label="Producto: Genérica Frozen Jabón Codigo: 228"]228;
+node[label="Producto: Increíble Granito Jabón Codigo: 226"]226;
+node[label="Producto: Ergonómico Metal Camisa Codigo: 227"]227;
+node[label="Producto: Pequeño Fresco Pizza Codigo: 231"]231;
+node[label="Producto: Gorgeous Acero Pizza Codigo: 230"]230;
+node[label="Producto: Sin marca Cotton Ratón Codigo: 229"]229;
+node[label="Producto: Rústico Metal Pizza Codigo: 232"]232;
+217->216;
+218->219;
+217->218;
+220->217;
+222->221;
+222->223;
+220->222;
+224->220;
+226->227;
+228->226;
+230->229;
+231->230;
+231->232;
+228->231;
+224->228;
+}
+}

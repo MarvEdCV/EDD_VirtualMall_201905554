@@ -1,0 +1,12 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Benavídez Ochoa e Hijos";color=black;
+node[label="Producto: Refinado Plástico Pelota Codigo: 263"]263;
+node[label="Producto: Rústico Plástico Toallas Codigo: 261"]261;
+node[label="Producto: Práctica Cotton Queso Codigo: 260"]260;
+node[label="Producto: Genérica Metal Ensalada Codigo: 264"]264;
+261->260;
+263->261;
+263->264;
+}
+}

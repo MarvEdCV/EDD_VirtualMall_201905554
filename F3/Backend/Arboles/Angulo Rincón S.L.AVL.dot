@@ -1,0 +1,14 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Angulo Rincón S.L.";color=black;
+node[label="Producto: Gorgeous Metal Toallas Codigo: 178"]178;
+node[label="Producto: Hecho a mano Plástico Pelota Codigo: 177"]177;
+node[label="Producto: Ergonómico Acero Guantes Codigo: 180"]180;
+node[label="Producto: Genérica Caucho Mesa Codigo: 179"]179;
+node[label="Producto: Práctica Soft Bike Codigo: 181"]181;
+178->177;
+180->179;
+180->181;
+178->180;
+}
+}

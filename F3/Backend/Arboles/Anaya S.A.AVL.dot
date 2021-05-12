@@ -1,0 +1,16 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Anaya S.A.";color=black;
+node[label="Producto: Sabrosa Madera Computadora Codigo: 11"]11;
+node[label="Producto: Hecho a mano Plástico Auto Codigo: 10"]10;
+node[label="Producto: Gorgeous Cotton Tuna Codigo: 9"]9;
+node[label="Producto: Increíble Metal Tuna Codigo: 14"]14;
+node[label="Producto: Fantástico Madera Zapatos Codigo: 13"]13;
+node[label="Producto: Práctica Caucho Pizza Codigo: 15"]15;
+10->9;
+11->10;
+14->13;
+14->15;
+11->14;
+}
+}

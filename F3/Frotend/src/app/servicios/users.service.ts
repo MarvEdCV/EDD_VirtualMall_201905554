@@ -29,4 +29,13 @@ export class UsersService {
 
     return this.http.post<any>(baseURL+"api/Registrar",user,httpOptions)
   }
+  mandarcomenT(comentario: any):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+
+    return this.http.post<any>(baseURL+"api/Comentar",comentario,httpOptions)
+  }
 }

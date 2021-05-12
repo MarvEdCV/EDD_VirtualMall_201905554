@@ -1,0 +1,20 @@
+digraph Hash{
+node [color ="turquoise"];
+subgraph clusterMarco {label="Arbol AVL de Bernal y Muro";color=black;
+node[label="Producto: Gorgeous Plástico Pescado Codigo: 426"]426;
+node[label="Producto: Sin marca Caucho Ratón Codigo: 422"]422;
+node[label="Producto: Elegante Soft Mesa Codigo: 421"]421;
+node[label="Producto: Sabrosa Acero Pescado Codigo: 424"]424;
+node[label="Producto: Genérica Cotton Jabón Codigo: 423"]423;
+node[label="Producto: Increíble Hormigón Embutidos Codigo: 425"]425;
+node[label="Producto: Increíble Plástico Pollo Codigo: 428"]428;
+node[label="Producto: Licencia Hormigón Mesa Codigo: 429"]429;
+422->421;
+424->423;
+424->425;
+422->424;
+426->422;
+428->429;
+426->428;
+}
+}

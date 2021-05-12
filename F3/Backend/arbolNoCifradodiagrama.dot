@@ -1,8 +1,64 @@
 digraph G{
 node[shape=record]
-node0xc000206480[label="<f0>|<f1>DPI: 29910061000 \n Nombre: Marvin \n Correo: marvintop2apex@guatemala.com |<f2>"]
-node0xc000206540[label="<f0>|<f1>DPI: 2 \n Nombre: Marvinrr \n Correo: edd@ingenieria.usac.edu.gt |<f2>|<f3>DPI: 45 \n Nombre: Marvinul \n Correo: edd@ingenieria.usac.edu.gt |<f4>"]
-node0xc000206480:f0->node0xc000206540
-node0xc0002064e0[label="<f0>|<f1>DPI: 110223078923 \n Nombre: Marvinxd \n Correo: edd@ingenieria.usac.edu.gt |<f2>|<f3>DPI: 1234567890101 \n Nombre:  EDD2021 \n Correo:  auxiliar@edd.com |<f4>"]
-node0xc000206480:f2->node0xc0002064e0
+node0xc000183b90[label="<f0>|<f1>DPI: 5814189346446 \n Nombre: Cristobal Olmos \n Correo: jaime.villanueva42@yahoo.com |<f2>"]
+node0xc000350c90[label="<f0>|<f1>DPI: 2544769875933 \n Nombre: Ricardo Villareal \n Correo: gracielasantilln86@hotmail.com |<f2>|<f3>DPI: 3829417887596 \n Nombre: Clemente Ortega \n Correo: marco-antonio.vigil42@hotmail.com |<f4>"]
+node0xc000350bd0[label="<f0>|<f1>DPI: 1368897391774 \n Nombre: Emilia Rocha \n Correo: caridad24@gmail.com |<f2>|<f3>DPI: 1889525113272 \n Nombre: Raúl Dueñas \n Correo: leonorlemus91@hotmail.com |<f4>"]
+node0xc0003505d0[label="<f0>|<f1>DPI: 1234567890101 \n Nombre:  EDD2021 \n Correo:  auxiliar@edd.com |<f2>|<f3>DPI: 1288938143589 \n Nombre: Benjamín Delapaz \n Correo: mara-soledad10@gmail.com |<f4>"]
+node0xc000350bd0:f0->node0xc0003505d0
+node0xc000350b10[label="<f0>|<f1>DPI: 1383852588951 \n Nombre: José Emilio Collazo \n Correo: enriqueluna46@yahoo.com |<f2>|<f3>DPI: 1625169327569 \n Nombre: Patricio Colunga \n Correo: concepcin.campos@yahoo.com |<f4>|<f5>DPI: 1636777681957 \n Nombre: Gilberto Menchaca \n Correo: ngela.godoy27@hotmail.com |<f6>|<f7>DPI: 1822147458793 \n Nombre: Ángela Limón \n Correo: mara-elena31@hotmail.com |<f8>"]
+node0xc000350bd0:f2->node0xc000350b10
+node0xc000350b70[label="<f0>|<f1>DPI: 1973526586315 \n Nombre: Lorena Dávila \n Correo: amalia.zamora@yahoo.com |<f2>|<f3>DPI: 2297333548713 \n Nombre: Antonio Moreno \n Correo: ngela.grijalva64@yahoo.com |<f4>|<f5>DPI: 2397977697528 \n Nombre: Vicente Chapa \n Correo: ramonaalemn15@yahoo.com |<f6>|<f7>DPI: 2463133135696 \n Nombre: Juan Santacruz \n Correo: cristobal.maestas@gmail.com |<f8>"]
+node0xc000350bd0:f4->node0xc000350b70
+node0xc000350c90:f0->node0xc000350bd0
+node0xc000350c30[label="<f0>|<f1>DPI: 2895556173714 \n Nombre: Sara Tovar \n Correo: marco-antonio.pacheco@gmail.com |<f2>|<f3>DPI: 3142962397964 \n Nombre: Pilar Arriaga \n Correo: gilberto.pedraza@yahoo.com |<f4>"]
+node0xc0003501b0[label="<f0>|<f1>DPI: 2579993916352 \n Nombre: Adriana Pichardo \n Correo: eva89@gmail.com |<f2>|<f3>DPI: 2669196288446 \n Nombre: Caridad Jiménez \n Correo: jacobo.ulloa@hotmail.com |<f4>|<f5>DPI: 2685894788755 \n Nombre: José Emilio Amador \n Correo: lorenzo36@gmail.com |<f6>|<f7>DPI: 2719414437751 \n Nombre: Victoria Rodríguez \n Correo: juliomontaez89@hotmail.com |<f8>"]
+node0xc000350c30:f0->node0xc0003501b0
+node0xc000350810[label="<f0>|<f1>DPI: 2934128786923 \n Nombre: Diana Granados \n Correo: hugo.lugo64@hotmail.com |<f2>|<f3>DPI: 2943724396811 \n Nombre: Mario Arreola \n Correo: rocio.armijo@hotmail.com |<f4>"]
+node0xc000350c30:f2->node0xc000350810
+node0xc000350870[label="<f0>|<f1>DPI: 3163518389391 \n Nombre: Beatriz Garibay \n Correo: lourdes41@yahoo.com |<f2>|<f3>DPI: 3222262655866 \n Nombre: Olivia Lovato \n Correo: carlota56@hotmail.com |<f4>|<f5>DPI: 3498837526256 \n Nombre: Ana Maya \n Correo: mara-luisa.garica@yahoo.com |<f6>|<f7>DPI: 3719448425919 \n Nombre: Graciela Garibay \n Correo: irenevarela66@yahoo.com |<f8>"]
+node0xc000350c30:f4->node0xc000350870
+node0xc000350c90:f2->node0xc000350c30
+node0xc000350a50[label="<f0>|<f1>DPI: 4139935691723 \n Nombre: Dolores Sepúlveda \n Correo: mara.perea@gmail.com |<f2>|<f3>DPI: 4656671761475 \n Nombre: Hernán Granado \n Correo: cecilia.pia88@gmail.com |<f4>|<f5>DPI: 4931411478349 \n Nombre: Ana Alemán \n Correo: mara-jos.guajardo@yahoo.com |<f6>|<f7>DPI: 5254425467734 \n Nombre: Catalina Anaya \n Correo: elena.malave66@gmail.com |<f8>"]
+node0xc000350ed0[label="<f0>|<f1>DPI: 3842613647158 \n Nombre: Gilberto Montaño \n Correo: teodoro90@hotmail.com |<f2>|<f3>DPI: 3867331198829 \n Nombre: Cristobal Gaytán \n Correo: hernn79@hotmail.com |<f4>"]
+node0xc000350a50:f0->node0xc000350ed0
+node0xc000350f30[label="<f0>|<f1>DPI: 4363433125265 \n Nombre: Jaime Saldivar \n Correo: armando.bonilla@yahoo.com |<f2>|<f3>DPI: 4364563269412 \n Nombre: Pablo Saldaña \n Correo: josferrer65@gmail.com |<f4>|<f5>DPI: 4515348769345 \n Nombre: Isabel Ledesma \n Correo: jos-eduardo.porras20@hotmail.com |<f6>|<f7>DPI: 4556984858539 \n Nombre: Enrique Balderas \n Correo: francisca.prado@hotmail.com |<f8>"]
+node0xc000350a50:f2->node0xc000350f30
+node0xc000350930[label="<f0>|<f1>DPI: 4741686263641 \n Nombre: David Ybarra \n Correo: carlacarranza97@hotmail.com |<f2>|<f3>DPI: 4761248384994 \n Nombre: Joaquín Carvajal \n Correo: barbara.soliz@gmail.com |<f4>|<f5>DPI: 4918878656113 \n Nombre: Claudia Pedroza \n Correo: eduardo.cortez25@gmail.com |<f6>|<f7>DPI: 4923278748766 \n Nombre: Luz Acuña \n Correo: beatriz.jaime@yahoo.com |<f8>"]
+node0xc000350a50:f4->node0xc000350930
+node0xc000350e10[label="<f0>|<f1>DPI: 5155254917714 \n Nombre: Jorge Chávez \n Correo: bertaperalta89@hotmail.com |<f2>|<f3>DPI: 5182366964249 \n Nombre: Gustavo Ramón \n Correo: lucas.quezada66@gmail.com |<f4>"]
+node0xc000350a50:f6->node0xc000350e10
+node0xc000350e70[label="<f0>|<f1>DPI: 5268755694735 \n Nombre: Juana Chávez \n Correo: cristina.velzquez42@yahoo.com |<f2>|<f3>DPI: 5292929954516 \n Nombre: Inés Deleón \n Correo: guillermo47@hotmail.com |<f4>|<f5>DPI: 5553164513391 \n Nombre: Bernardo Armenta \n Correo: antoniogaytn47@gmail.com |<f6>"]
+node0xc000350a50:f8->node0xc000350e70
+node0xc000350c90:f4->node0xc000350a50
+node0xc000183b90:f0->node0xc000350c90
+node0xc000350cf0[label="<f0>|<f1>DPI: 7334813213241 \n Nombre: Conchita Barreto \n Correo: manuela20@hotmail.com |<f2>|<f3>DPI: 8681469768764 \n Nombre: Arturo Herrera \n Correo: luciagalvn31@yahoo.com |<f4>"]
+node0xc000350ab0[label="<f0>|<f1>DPI: 6151384252919 \n Nombre: Julio Ojeda \n Correo: mnicasaavedra45@gmail.com |<f2>|<f3>DPI: 6644531371337 \n Nombre: Ignacio Almaraz \n Correo: yolanda.guzmn@yahoo.com |<f4>|<f5>DPI: 7239523619319 \n Nombre: Mariana Benavídez \n Correo: antonioposada19@yahoo.com |<f6>"]
+node0xc000350990[label="<f0>|<f1>DPI: 5829183656269 \n Nombre: Carmen Rodríguez \n Correo: guadalupe.luna@yahoo.com |<f2>|<f3>DPI: 5936653271624 \n Nombre: Miguel Corona \n Correo: homero.delatorre54@gmail.com |<f4>|<f5>DPI: 6117527626576 \n Nombre: Mayte Salcido \n Correo: raquel.viera@gmail.com |<f6>"]
+node0xc000350ab0:f0->node0xc000350990
+node0xc0003509f0[label="<f0>|<f1>DPI: 6278431891478 \n Nombre: Mónica Jaramillo \n Correo: andrea.rico43@yahoo.com |<f2>|<f3>DPI: 6337279296374 \n Nombre: Emilia Carrasquillo \n Correo: alejandra72@hotmail.com |<f4>|<f5>DPI: 6643178386258 \n Nombre: Magdalena Cabrera \n Correo: pedromontemayor66@yahoo.com |<f6>"]
+node0xc000350ab0:f2->node0xc0003509f0
+node0xc000350f90[label="<f0>|<f1>DPI: 7119974381947 \n Nombre: Lourdes Segura \n Correo: jos-emiliomadrigal21@yahoo.com |<f2>|<f3>DPI: 7177753885314 \n Nombre: Daniel Amaya \n Correo: emilio.camarillo@yahoo.com |<f4>"]
+node0xc000350ab0:f4->node0xc000350f90
+node0xc000350ff0[label="<f0>|<f1>DPI: 7243556412666 \n Nombre: Luis Franco \n Correo: martn.pabn@hotmail.com |<f2>|<f3>DPI: 7293994859958 \n Nombre: Marco Antonio Gaona \n Correo: rafael.salcido@yahoo.com |<f4>"]
+node0xc000350ab0:f6->node0xc000350ff0
+node0xc000350cf0:f0->node0xc000350ab0
+node0xc000350750[label="<f0>|<f1>DPI: 7913235243699 \n Nombre: Adriana Gil \n Correo: jaime08@yahoo.com |<f2>|<f3>DPI: 8593429736187 \n Nombre: Alejandra Alcántar \n Correo: mariano.duarte@yahoo.com |<f4>"]
+node0xc000350450[label="<f0>|<f1>DPI: 7393555697555 \n Nombre: Ana Luisa Quintero \n Correo: gloria.correa@hotmail.com |<f2>|<f3>DPI: 7635494171368 \n Nombre: Cristobal Gaona \n Correo: guillermina01@hotmail.com |<f4>|<f5>DPI: 7736147974617 \n Nombre: Mercedes Matos \n Correo: andrs.villa@hotmail.com |<f6>|<f7>DPI: 7743627623662 \n Nombre: Adriana Padrón \n Correo: gustavohidalgo60@yahoo.com |<f8>"]
+node0xc000350750:f0->node0xc000350450
+node0xc0003504b0[label="<f0>|<f1>DPI: 7966122282638 \n Nombre: Diego Castañeda \n Correo: guillermina.loera38@yahoo.com |<f2>|<f3>DPI: 8377357717474 \n Nombre: Raquel Villanueva \n Correo: clara17@yahoo.com |<f4>|<f5>DPI: 8498254356931 \n Nombre: Elena Valdivia \n Correo: sergio12@hotmail.com |<f6>|<f7>DPI: 8584257927669 \n Nombre: Mónica Valverde \n Correo: clemente.palacios86@hotmail.com |<f8>"]
+node0xc000350750:f2->node0xc0003504b0
+node0xc000183ef0[label="<f0>|<f1>DPI: 8616272612388 \n Nombre: Rosalia Báez \n Correo: bertacastro29@yahoo.com |<f2>|<f3>DPI: 8618227236876 \n Nombre: Patricio Luna \n Correo: timoteo.de-jess@hotmail.com |<f4>"]
+node0xc000350750:f4->node0xc000183ef0
+node0xc000350cf0:f2->node0xc000350750
+node0xc0003507b0[label="<f0>|<f1>DPI: 8818981557678 \n Nombre: Ramón Paredes \n Correo: francisca.henrquez89@yahoo.com |<f2>|<f3>DPI: 8926946543451 \n Nombre: Gloria Lugo \n Correo: anita84@yahoo.com |<f4>|<f5>DPI: 9468315172899 \n Nombre: Miguel Delao \n Correo: emilia.bustos@yahoo.com |<f6>"]
+node0xc000350d50[label="<f0>|<f1>DPI: 8719188476476 \n Nombre: Reina Fonseca \n Correo: miguel-ngel.almanza03@gmail.com |<f2>|<f3>DPI: 8773678378328 \n Nombre: Marco Antonio Olvera \n Correo: horacio96@gmail.com |<f4>"]
+node0xc0003507b0:f0->node0xc000350d50
+node0xc000350db0[label="<f0>|<f1>DPI: 8844536119965 \n Nombre: Andrea Bahena \n Correo: micaelaybarra59@yahoo.com |<f2>|<f3>DPI: 8849135349176 \n Nombre: Isabel Quiñones \n Correo: gregorio.leiva59@yahoo.com |<f4>"]
+node0xc0003507b0:f2->node0xc000350db0
+node0xc000350690[label="<f0>|<f1>DPI: 8946841966492 \n Nombre: Isabela Águilar \n Correo: manuela52@hotmail.com |<f2>|<f3>DPI: 9281237978619 \n Nombre: Lorena Saiz \n Correo: concepcinaguirre80@yahoo.com |<f4>"]
+node0xc0003507b0:f4->node0xc000350690
+node0xc0003506f0[label="<f0>|<f1>DPI: 9664891415778 \n Nombre: Graciela Rosales \n Correo: guillermo.sanches@gmail.com |<f2>|<f3>DPI: 9713416438915 \n Nombre: Magdalena Corrales \n Correo: guillermo94@gmail.com |<f4>|<f5>DPI: 9783989826944 \n Nombre: Ariadna Gallegos \n Correo: jaimezayas60@yahoo.com |<f6>|<f7>DPI: 9866583571365 \n Nombre: María Cristina Díaz \n Correo: mara-cristina.rodarte@hotmail.com |<f8>"]
+node0xc0003507b0:f6->node0xc0003506f0
+node0xc000350cf0:f4->node0xc0003507b0
+node0xc000183b90:f2->node0xc000350cf0
 }
